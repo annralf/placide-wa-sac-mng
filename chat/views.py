@@ -1,7 +1,7 @@
 #from django.shortcuts import render
 from django.http import HttpResponse
-from .services import getMessages
+from .services.messages import sendMessage
 
 def index(request):
-    getMessages()
+    sendMessage( body = 'Mensaje de prueba', phone = '+573503376482' )
     return HttpResponse('Did')
