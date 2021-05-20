@@ -1,5 +1,5 @@
 import requests
-from ._constants import *
+from chat._constants import *
 
 ### Messages functions ###
 
@@ -41,7 +41,9 @@ def sendMessage( body,quotedMsgId = None,chatId = None,phone = None,
     if mentionedPhones is not None:
         payload['mentionedPhones'] = mentionedPhones
 
-    r = requests.post(f'{API_URL}/sendMessage', params = payload, data = body)
+    r = requests.post(f'{API_URL}/sendMessage', params = payload, 
+                        data = {'body': body} )
+    print(r.text)
     return r
 
 # Forward message to a new or existing chat
@@ -56,5 +58,6 @@ def forwardMessage( body,messageId, chatId = None, phone = None ):
     else:
         payload['phone'] = phone
 
-    r = requests.post(f'{API_URL}/forwardMessage', params = payload,data = body )
+    r = requests.post(f'{API_URL}/forwardMessage', params = payload,
+                        data = {'body': body} )
     return r
