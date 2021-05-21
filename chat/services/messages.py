@@ -12,7 +12,7 @@ def getMessages( lastMessageNumber = None, last = None, chatId = None,
     # Optional params
     if lastMessageNumber is not None:
         payload['lastMessageNumber'] = lastMessageNumber 
-    if las is not None:
+    if last is not None:
         payload['last'] = last
     if chatId is not None:
         payload['chatId'] = chatId
@@ -38,6 +38,8 @@ def sendMessage( body,quotedMsgId = None,chatId = None,phone = None,
         payload['chatId'] = chatId
     else:
         payload['phone'] = phone
+    if quotedMsgId is not None:
+        payload['quotedMsgId'] = quotedMsgId
     if mentionedPhones is not None:
         payload['mentionedPhones'] = mentionedPhones
 
