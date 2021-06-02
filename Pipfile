@@ -15,10 +15,12 @@ pytz = "==2021.1"
 requests = "==2.25.1"
 sqlparse = "==0.4.1"
 urllib3 = "==1.26.4"
-Django = "==3.2.3"
+Django = "==3.0.5"
 djongo = "*"
 djangorestframework = "*"
 dnspython = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 

@@ -49,30 +49,31 @@ def messages(request,id = None):
     if request.method == 'GET':
         if id is not None:
             r = Queue.objects.using('messages').filter(message = {'ws_id': id})
-            return Response(r.values_list())
+            return Response(r.values())
 
         elif 'cached' in request.query_params:
             r = Queue.objects.using('messages').all()
-            return Response(r.values_list())
+            return Response(r.values())
         else:
             r = getMessages(**request.query_params)
-            return Response(r)
+            return Response(r.json())
 
     elif request.method == 'POST':
-        r = sendMessage(**request.data)
-        return Response(r)
+        for message in request.data['messages']:
+            r = sendMessage(**message)
+        return Response(r.json())
 
 @api_view(['GET'])
 def dialogs(request):
     if request.method == 'GET':
         r = getDialogs()
-        return Response(r.text)
+        return Response(r.json())
 
 @api_view(['POST'])
 def hook(request):
     if request.method == 'POST':
         if 'messages' in request.data:
-            print('lo hace')
+            print(request.data)
             ws_id = request.data['messages'][0]['id']
             q = Queue()
             q.message = {
