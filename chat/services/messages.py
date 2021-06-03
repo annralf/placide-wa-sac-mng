@@ -38,6 +38,8 @@ def sendMessage( body,quotedMsgId = None,chatId = None,phone = None,
         payload['chatId'] = chatId
     else:
         payload['phone'] = phone
+    if quotedMsgId is not None:
+        payload['quotedMsgId'] = quotedMsgId
     if mentionedPhones is not None:
         payload['mentionedPhones'] = mentionedPhones
 
