@@ -14,3 +14,4 @@ requests==2.25.1
 sqlparse==0.2.4
 urllib3==1.26.4
 djangorestframework
+jsonfield
