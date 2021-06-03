@@ -6,27 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dashboard</title>
-
+    {% load static %}
     <!-- Prevent the demo from appearing in search engines -->
     <meta name="robots" content="noindex">
 
     <!-- Simplebar -->
-    <link type="text/css" href="/static/vendor/simplebar.min.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'vendor/simplebar.min.css' %}" rel="stylesheet">
 
     <!-- App CSS -->
-    <link type="text/css" href="/static/css/app.css" rel="stylesheet">
-    <link type="text/css" href="/static/css/app.rtl.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/app.rtl.css' %}" rel="stylesheet">
 
     <!-- Material Design Icons -->
-    <link type="text/css" href="/static/css/vendor-material-icons.css" rel="stylesheet">
-    <link type="text/css" href="/static/css/vendor-material-icons.rtl.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-material-icons.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-material-icons.rtl.css' %}" rel="stylesheet">
 
     <!-- Font Awesome FREE Icons -->
-    <link type="text/css" href="/static/css/vendor-fontawesome-free.css" rel="stylesheet">
-    <link type="text/css" href="/static/css/vendor-fontawesome-free.rtl.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-fontawesome-free.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-fontawesome-free.rtl.css' %}" rel="stylesheet">
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js' %}) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133433427-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -44,13 +44,13 @@
 
 
     <!-- Flatpickr -->
-    <link type="text/css" href="/static/css/vendor-flatpickr.css" rel="stylesheet">
-    <link type="text/css" href="/static/css/vendor-flatpickr.rtl.css" rel="stylesheet">
-    <link type="text/css" href="/static/css/vendor-flatpickr-airbnb.css" rel="stylesheet">
-    <link type="text/css" href="/static/css/vendor-flatpickr-airbnb.rtl.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-flatpickr.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-flatpickr.rtl.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-flatpickr-airbnb.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-flatpickr-airbnb.rtl.css' %}" rel="stylesheet">
 
     <!-- Vector Maps -->
-    <link type="text/css" href="/static/vendor/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'vendor/jqvmap/jqvmap.min.css' %}" rel="stylesheet">
 
 
 
@@ -92,7 +92,7 @@
 
                         <!-- Navbar Brand -->
                         <a href="index.html" class="navbar-brand ">
-                            <img class="navbar-brand-icon" src="/static/images/stack-logo-white.svg" width="22" alt="Stack">
+                            <img class="navbar-brand-icon" src="{% static 'images/stack-logo-white.svg' %}" width="22" alt="Stack">
                             <span>Stack</span>
                         </a>
 
@@ -131,7 +131,7 @@
                                             <div class="dropdown-item d-flex">
                                                 <div class="mr-3">
                                                     <div class="avatar avatar-sm" style="width: 32px; height: 32px;">
-                                                        <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                        <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex">
@@ -170,7 +170,7 @@
                                             <div class="dropdown-item d-flex">
                                                 <div class="mr-3">
                                                     <div class="avatar avatar-sm" style="width: 32px; height: 32px;">
-                                                        <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                        <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex">
@@ -209,7 +209,7 @@
                                             <div class="dropdown-item d-flex">
                                                 <div class="mr-3">
                                                     <div class="avatar avatar-sm" style="width: 32px; height: 32px;">
-                                                        <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                        <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                     </div>
                                                 </div>
                                                 <div class="flex">
@@ -255,7 +255,7 @@
                         <ul class="nav navbar-nav d-none d-sm-flex border-left navbar-height align-items-center">
                             <li class="nav-item dropdown">
                                 <a href="#account_menu" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">
-                                    <img src="/static/images/avatar/demi.png" class="rounded-circle" width="32" alt="Frontted">
+                                    <img src="{% static 'images/avatar/demi.png' %}" class="rounded-circle" width="32" alt="Frontted">
                                     <span class="ml-1 d-flex-inline">
                                         <span class="text-light">Adrian D.</span>
                                     </span>
@@ -484,7 +484,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_rsz_1andy-lee-642320-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_rsz_1andy-lee-642320-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
 
 
@@ -509,7 +509,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
 
 
@@ -534,7 +534,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_jeremy-banks-798787-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_jeremy-banks-798787-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
 
 
@@ -559,7 +559,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_joao-silas-636453-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_joao-silas-636453-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
 
 
@@ -584,7 +584,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_luke-porter-261779-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_luke-porter-261779-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
 
 
@@ -614,7 +614,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_rsz_1andy-lee-642320-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_rsz_1andy-lee-642320-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Sherri J. Cardenas</strong>
 
@@ -635,7 +635,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Joseph S. Ferland</strong>
 
@@ -656,7 +656,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_jeremy-banks-798787-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_jeremy-banks-798787-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Bryan K. Davis</strong>
 
@@ -677,7 +677,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_joao-silas-636453-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_joao-silas-636453-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Kaci M. Langston</strong>
 
@@ -698,7 +698,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_michael-dam-258165-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_michael-dam-258165-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1"></strong>
 
@@ -722,7 +722,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_rsz_1andy-lee-642320-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_rsz_1andy-lee-642320-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Jenell D. Matney</strong>
 
@@ -743,7 +743,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Sherri J. Cardenas</strong>
 
@@ -764,7 +764,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_jeremy-banks-798787-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_jeremy-banks-798787-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Joseph S. Ferland</strong>
 
@@ -785,7 +785,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_joao-silas-636453-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_joao-silas-636453-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Bryan K. Davis</strong>
 
@@ -806,7 +806,7 @@
                                                 <div class="flex">
                                                     <div class="d-flex align-items-middle">
                                                         <div class="avatar avatar-xxs mr-1">
-                                                            <img src="/static/images/256_luke-porter-261779-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                            <img src="{% static 'images/256_luke-porter-261779-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                         </div>
                                                         <strong class="text-15pt mr-1">Kaci M. Langston</strong>
 
@@ -1062,7 +1062,7 @@
 
                                                 <div class="media align-items-center">
                                                     <div class="avatar avatar-xs mr-2">
-                                                        <img src="/static/images/256_luke-porter-261779-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                        <img src="{% static 'images/256_luke-porter-261779-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                     </div>
                                                     <div class="media-body">
 
@@ -1098,7 +1098,7 @@
                                             <td>
 
                                                 <div class="media align-items-center">
-                                                    <img src="/static/images/avatar/green.svg" class="mr-2" alt="avatar" />
+                                                    <img src="{% static 'images/avatar/green.svg' %}" class="mr-2" alt="avatar" />
                                                     <div class="media-body">
 
                                                         <span class="js-lists-values-employee-name">Connie Smith</span>
@@ -1135,7 +1135,7 @@
                                                 <div class="media align-items-center">
 
                                                     <div class="avatar avatar-xs mr-2">
-                                                        <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                        <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                     </div>
                                                     <div class="media-body">
 
@@ -1173,7 +1173,7 @@
 
                                                 <div class="media align-items-center">
                                                     <div class="avatar avatar-xs mr-2">
-                                                        <img src="/static/images/256_luke-porter-261779-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                        <img src="{% static 'images/256_luke-porter-261779-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                     </div>
                                                     <div class="media-body">
 
@@ -1209,7 +1209,7 @@
                                             <td>
 
                                                 <div class="media align-items-center">
-                                                    <img src="/static/images/avatar/green.svg" class="mr-2" alt="avatar" />
+                                                    <img src="{% static 'images/avatar/green.svg' %}" class="mr-2" alt="avatar" />
                                                     <div class="media-body">
 
                                                         <span class="js-lists-values-employee-name">Connie Smith</span>
@@ -1246,7 +1246,7 @@
                                                 <div class="media align-items-center">
 
                                                     <div class="avatar avatar-xs mr-2">
-                                                        <img src="/static/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                        <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}" alt="Avatar" class="avatar-img rounded-circle">
                                                     </div>
                                                     <div class="media-body">
 
@@ -1294,7 +1294,7 @@
                             <div class="d-flex align-items-center sidebar-p-a border-bottom sidebar-account">
                                 <a href="profile.html" class="flex d-flex align-items-center text-underline-0 text-body">
                                     <span class="avatar mr-3">
-                                        <img src="/static/images/avatar/demi.png" alt="avatar" class="avatar-img rounded-circle">
+                                        <img src="{% static 'images/avatar/demi.png' %}" alt="avatar" class="avatar-img rounded-circle">
                                     </span>
                                     <span class="flex d-flex flex-column">
                                         <strong>Adrian Demian</strong>
@@ -1663,53 +1663,53 @@
     </div>
 
     <!-- jQuery -->
-    <script src="/static/vendor/jquery.min.js"></script>
+    <script src="{% static 'vendor/jquery.min.js' %}"></script>
 
     <!-- Bootstrap -->
-    <script src="/static/vendor/popper.min.js"></script>
-    <script src="/static/vendor/bootstrap.min.js"></script>
+    <script src="{% static 'vendor/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap.min.js' %}"></script>
 
     <!-- Simplebar -->
-    <script src="/static/vendor/simplebar.min.js"></script>
+    <script src="{% static 'vendor/simplebar.min.js' %}"></script>
 
     <!-- DOM Factory -->
-    <script src="/static/vendor/dom-factory.js"></script>
+    <script src="{% static 'vendor/dom-factory.js' %}"></script>
 
     <!-- MDK -->
-    <script src="/static/vendor/material-design-kit.js"></script>
+    <script src="{% static 'vendor/material-design-kit.js' %}"></script>
 
     <!-- App -->
-    <script src="/static/js/toggle-check-all.js"></script>
-    <script src="/static/js/check-selected-row.js"></script>
-    <script src="/static/js/dropdown.js"></script>
-    <script src="/static/js/sidebar-mini.js"></script>
-    <script src="/static/js/app.js"></script>
+    <script src="{% static 'js/toggle-check-all.js' %}"></script>
+    <script src="{% static 'js/check-selected-row.js' %}"></script>
+    <script src="{% static 'js/dropdown.js' %}"></script>
+    <script src="{% static 'js/sidebar-mini.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 
     <!-- App Settings (safe to remove) -->
-    <script src="/static/js/app-settings.js"></script>
+    <script src="{% static 'js/app-settings.js' %}"></script>
 
 
 
     <!-- Flatpickr -->
-    <script src="/static/vendor/flatpickr/flatpickr.min.js"></script>
-    <script src="/static/js/flatpickr.js"></script>
+    <script src="{% static 'vendor/flatpickr/flatpickr.min.js' %}"></script>
+    <script src="{% static 'js/flatpickr.js' %}"></script>
 
     <!-- Global Settings -->
-    <script src="/static/js/settings.js"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
 
-    <!-- Chart.js -->
-    <script src="/static/vendor/Chart.min.js"></script>
+    <!-- Chart.js' %} -->
+    <script src="{% static 'vendor/Chart.min.js' %}"></script>
 
     <!-- App Charts JS -->
-    <script src="/static/js/charts.js"></script>
+    <script src="{% static 'js/charts.js' %}"></script>
 
     <!-- Chart Samples -->
-    <script src="/static/js/page.dashboard.js"></script>
+    <script src="{% static 'js/page.dashboard.js' %}"></script>
 
     <!-- Vector Maps -->
-    <script src="/static/vendor/jqvmap/jquery.vmap.min.js"></script>
-    <script src="/static/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
-    <script src="/static/js/vector-maps.js"></script>
+    <script src="{% static 'vendor/jqvmap/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'vendor/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static 'js/vector-maps.js' %}"></script>
 
 </body>
 
