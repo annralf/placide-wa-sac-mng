@@ -5,10 +5,8 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
-from jsonfield import JSONField
-
 from django.db import models
-
+from djongo import models
 
 class ActivitiesPerformance(models.Model):
     name = models.CharField(max_length=45, blank=True, null=True)
@@ -181,6 +179,7 @@ class UsersStatus(models.Model):
     class Meta:
         managed = False
         db_table = 'users_status'
+
 
 class Agent(models.Model):
     agent_name = models.CharField(max_length = 20)
