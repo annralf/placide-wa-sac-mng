@@ -8,7 +8,7 @@ from .services.messages import getMessages, sendMessage
 from .services.dialogs import getDialogs
 
 # Models
-from .models import Queue, Agent#, Chat
+#from .models import Queue, Agent#, Chat
 
 @api_view(['GET'])
 def index(request):
@@ -18,17 +18,17 @@ def index(request):
 def agents(request, name = None, instance_id = None):
     if request.method == 'GET':
         if name is None:
-            r = Agent.objects.using('messages').all()
+ #           r = Agent.objects.using('messages').all()
         else:
-            r = Agent.objects.using('messages').filter(agent_name = name)
+  #          r = Agent.objects.using('messages').filter(agent_name = name)
 
-        print(dir(r))
+ #       print(dir(r))
         return Response(r.values())
 
     if request.method == 'POST':
         if 'name' in request.data:
-            q = Agent(agent_name = request.data['name'])
-            q.save(using='messages')
+#            q = Agent(agent_name = request.data['name'])
+#            q.save(using='messages')
         else:
             return Response('MISSING ARGUMENT "NAME"')
         return Response('Done')
@@ -37,10 +37,10 @@ def agents(request, name = None, instance_id = None):
         if 'name' in request.data and 'instance' in request.data:
             name = request.data['name']
             instace = request.data['instance']
-            agent =  Agent.objects.using('messages').filter(agent_name = name)
+#            agent =  Agent.objects.using('messages').filter(agent_name = name)
             print(agent)
-            agent['instances'] = list(agent['instances']).append(instance)
-            agent.save(using = 'messages')
+#            agent['instances'] = list(agent['instances']).append(instance)
+#            agent.save(using = 'messages')
 
         return Response('assigned')
 
@@ -48,11 +48,11 @@ def agents(request, name = None, instance_id = None):
 def messages(request,id = None):
     if request.method == 'GET':
         if id is not None:
-            r = Queue.objects.using('messages').filter(message = {'ws_id': id})
+#            r = Queue.objects.using('messages').filter(message = {'ws_id': id})
             return Response(r.values())
 
         elif 'cached' in request.query_params:
-            r = Queue.objects.using('messages').all()
+#            r = Queue.objects.using('messages').all()
             return Response(r.values())
         else:
             r = getMessages(**request.query_params)
@@ -75,18 +75,18 @@ def hook(request):
         if 'messages' in request.data:
             print(request.data)
             ws_id = request.data['messages'][0]['id']
-            q = Queue()
-            q.message = {
-                'raw_data': request.data,
-                'ws_id': ws_id,
-                'assigned': False,
-            }
-            q.save(using='messages')
+#            q = Queue()
+#            q.message = {
+#                'raw_data': request.data,
+#                'ws_id': ws_id,
+#                'assigned': False,
+#            }
+#            q.save(using='messages')
             print(request.data)
         return Response('Ok')
 
 @api_view(['GET'])
 def queue(request):
     if request.method == 'GET':
-        r = Queue.objects.using('messages').filter(message = {'assigned':False})
-        return Response(r.values_list())
+#        r = Queue.objects.using('messages').filter(message = {'assigned':False})
+#        return Response(r.values_list())
