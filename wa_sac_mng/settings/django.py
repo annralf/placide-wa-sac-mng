@@ -91,15 +91,15 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
-    },
-    'messages': {
-        'ENGINE': 'djongo',
-        'NAME': 'myFirstDatabase',
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': 'mongodb+srv://admin:rVWMftMT4DjlIEAh@cluster0.g3uvz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-            'username': 'admin',
-            'password': 'rVWMftMT4DjlIEAh',
+#    },
+#    'messages': {
+#        'ENGINE': 'djongo',
+#        'NAME': 'myFirstDatabase',
+#        'ENFORCE_SCHEMA': False,
+#        'CLIENT': {
+#            'host': 'mongodb+srv://admin:rVWMftMT4DjlIEAh@cluster0.g3uvz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+#            'username': 'admin',
+#            'password': 'rVWMftMT4DjlIEAh',
         }
     }
 }
