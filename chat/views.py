@@ -18,19 +18,14 @@ class Index(View):
     def get(self, request):
         return render(request, self.template)
 
-
-
-
-@api_view(['GET'])
-def index(request):
-    return Response('Main page')
-
 @api_view(['GET','POST','PUT'])
 def agents(request, name = None, instance_id = None):
     if request.method == 'GET':
         if name is None:
+            pass
  #           r = Agent.objects.using('messages').all()
         else:
+            pass
   #          r = Agent.objects.using('messages').filter(agent_name = name)
 
  #       print(dir(r))
@@ -38,6 +33,7 @@ def agents(request, name = None, instance_id = None):
 
     if request.method == 'POST':
         if 'name' in request.data:
+            pass
 #            q = Agent(agent_name = request.data['name'])
 #            q.save(using='messages')
         else:
@@ -99,5 +95,6 @@ def hook(request):
 @api_view(['GET'])
 def queue(request):
     if request.method == 'GET':
+        pass
 #        r = Queue.objects.using('messages').filter(message = {'assigned':False})
 #        return Response(r.values_list())
