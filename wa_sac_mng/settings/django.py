@@ -147,7 +147,7 @@ STATIC_ROOT = join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    join(BASE_DIR, 'static'),
+    join(BASE_DIR, 'staticfiles'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
