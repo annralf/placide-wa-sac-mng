@@ -172,20 +172,17 @@ class UsersStatus(models.Model):
         managed = False
         db_table = 'users_status'
 
+class Agent(models.Model):
+    agent_name = models.CharField(max_length = 20)
 
-#class Agent(models.Model):
-#    agent_name = models.CharField(max_length = 20)
-#    instances = models.JSONField(default = [])
+class Client(models.Model):
+    ws_id = models.CharField(max_length = 50)
+    assigned = models.BooleanField(default = False)
 
-#class Message(models.Model):
-#    raw_data = models.JSONField()
-#    ws_id = models.CharField(max_length = 50)
-#    assigned = models.BooleanField(default = False)
+class Chat(models.Model):
+    instance_name = models.CharField(max_length = 50)
+    agent = models.ForeignKey(Agent, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
 
-#    class Meta:
-#        abstract = True
-
-#class Queue(models.Model):
-#    message = models.EmbeddedField(
-#        model_container = Message
-    #)
+class Message(models.Model):
+    pass
