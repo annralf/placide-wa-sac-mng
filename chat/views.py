@@ -10,7 +10,10 @@ from .services.messages import getMessages, sendMessage
 from .services.dialogs import getDialogs
 
 # Models
-#from .models import Queue, Agent#, Chat
+from .models import Message, Agent, Chat
+
+def std_response(msg='successful',pld={}):
+    return Response({"status": 'Ok', "payload": pld, "message": msg})
 
 class Index(View):
     template = 'index.html'
@@ -23,58 +26,63 @@ def agents(request, name = None, instance_id = None):
     if request.method == 'GET':
         if name is None:
             pass
- #           r = Agent.objects.using('messages').all()
+            r = Agent.objects.all()
         else:
             pass
-  #          r = Agent.objects.using('messages').filter(agent_name = name)
+            r = Agent.objects.filter(agent_name = name)
 
- #       print(dir(r))
-        return Response(r.values())
+        print(dir(r))
+        return std_response(pld=r.values())
 
     if request.method == 'POST':
         if 'name' in request.data:
             pass
-#            q = Agent(agent_name = request.data['name'])
-#            q.save(using='messages')
+            q = Agent(agent_name = request.data['name'])
+            q.save()
         else:
-            return Response('MISSING ARGUMENT "NAME"')
-        return Response('Done')
+            return std_response('Mising argument "NAME"')
+        return std_response('Done')
 
     if request.method == 'PUT':
         if 'name' in request.data and 'instance' in request.data:
             name = request.data['name']
             instace = request.data['instance']
-#            agent =  Agent.objects.using('messages').filter(agent_name = name)
+            agent =  Agent.objects.filter(agent_name = name)
             print(agent)
-#            agent['instances'] = list(agent['instances']).append(instance)
-#            agent.save(using = 'messages')
+            agent['instances'] = list(agent['instances']).append(instance)
+            agent.save()
 
-        return Response('assigned')
+        return std_response('assigned')
 
 @api_view(['GET','POST'])
 def messages(request,id = None):
     if request.method == 'GET':
         if id is not None:
-#            r = Queue.objects.using('messages').filter(message = {'ws_id': id})
-            return Response(r.values())
+            r = Queue.objects.filter(message = {'ws_id': id})
+            return std_response(pld=r.values())
 
         elif 'cached' in request.query_params:
-#            r = Queue.objects.using('messages').all()
-            return Response(r.values())
+            r = Queue.objects.all()
+            return std_response(pld=r.values())
         else:
             r = getMessages(**request.query_params)
-            return Response(r.json())
+            return std_response(pld=r.json())
 
     elif request.method == 'POST':
-        for message in request.data['messages']:
-            r = sendMessage(**message)
-        return Response(r.json())
+        if not 'messages' in request.data:
+            r = sendMessage(**request.data)
+            return std_response(pld=r.json())
+        else:
+            print(request.data)
+            for message in request.data['messages']:
+                r = sendMessage(**message)
+            return std_response('All messages sent')
 
 @api_view(['GET'])
 def dialogs(request):
     if request.method == 'GET':
         r = getDialogs()
-        return Response(r.json())
+        return std_response(pld=r.json())
 
 @api_view(['POST'])
 def hook(request):
@@ -82,19 +90,11 @@ def hook(request):
         if 'messages' in request.data:
             print(request.data)
             ws_id = request.data['messages'][0]['id']
-#            q = Queue()
-#            q.message = {
-#                'raw_data': request.data,
-#                'ws_id': ws_id,
-#                'assigned': False,
-#            }
-#            q.save(using='messages')
-            print(request.data)
-        return Response('Ok')
+        return std_response('Ok')
 
 @api_view(['GET'])
 def queue(request):
     if request.method == 'GET':
         pass
-#        r = Queue.objects.using('messages').filter(message = {'assigned':False})
+#        r = Queue.objects.filter(message = {'assigned':False})
 #        return Response(r.values_list())
