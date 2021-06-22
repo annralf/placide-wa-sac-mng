@@ -1,0 +1,93 @@
+{% load static %}
+<div class="mdk-drawer  js-mdk-drawer" id="default-drawer" data-align="start">
+    <div class="mdk-drawer__content">
+        <div class="sidebar sidebar-light sidebar-left simplebar" data-simplebar>
+            <div class="d-flex align-items-center sidebar-p-a border-bottom sidebar-account">
+                <a href="profile.html" class="flex d-flex align-items-center text-underline-0 text-body">
+                    <span class="flex d-flex flex-column">
+                        <strong>{{agent_name}}</strong>
+                        <small class="text-muted text-uppercase">Account Manager</small>
+                    </span>
+                </a>
+            </div>
+            <div class="sidebar-heading sidebar-m-t">Mensajes</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item active open">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#dashboards_menu">
+                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">markunread</i>
+                        <span class="sidebar-menu-text">En Espera</span>
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse show " id="dashboards_menu">
+                        <li class="sidebar-menu-item active">
+                            <a class="sidebar-menu-button" href="index.html">
+                                <span class="sidebar-menu-text">Default</span>
+                            </a>
+                        </li>                                        
+                    </ul>
+                </li>
+
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#apps_menu">
+                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">message</i>
+                        <span class="sidebar-menu-text">Activos</span>
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse" id="apps_menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="app-trello.html">
+                                <span class="sidebar-menu-text">Trello</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#pages_menu">
+                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">done_all</i>
+                        <span class="sidebar-menu-text">Finalizados</span>
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse" id="pages_menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="companies.html">
+                                <span class="sidebar-menu-text">Companies</span>
+                            </a>
+                        </li>                                      
+                    </ul>
+                </li>
+
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#layouts_menu">
+                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_offer</i>
+                        <span class="sidebar-menu-text">Categorizados</span>
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse" id="layouts_menu">
+                        <li class="sidebar-menu-item active">
+                            <a class="sidebar-menu-button" href="index.html">
+                                <span class="sidebar-menu-text">Default</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="sidebar-block p-0">
+                <div class="sidebar-p-a sidebar-b-y">
+                    <div class="d-flex align-items-top mb-2">
+                        <div class="sidebar-heading m-0 p-0 flex text-body js-text-body">Progreso</div>
+                        <div class="font-weight-bold text-success">50%</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-p-a">
+                <a href="https://themeforest.net/item/stack-admin-bootstrap-4-dashboard-template/22959011" class="btn btn-outline-primary btn-block">Cerrar Sesión</a>
+            </div>
+
+        </div>
+    </div>
+</div>

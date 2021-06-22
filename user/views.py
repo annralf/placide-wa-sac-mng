@@ -4,9 +4,6 @@ from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 
-# Models
-# from .models import Queue, Agent#, Chat
-
 class Login(View):
     template = 'user/login.html'
 
@@ -21,7 +18,23 @@ class Login(View):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/')
+            # return HttpResponseRedirect('/')
         else:
             return render(request, self.template, {'form': form})
 
+
+class Admin(View):
+    template = 'user/admin.html'
+    def get(self, request):
+        return render(request,self.template)
+
+
+class Edit(View):
+    template = 'user/edit.html'
+    def get(self, request):
+        return render(request,self.template)
+
+class List(View):
+    template = 'user/list.html'
+    def get(self, request):
+        return render(request,self.template)

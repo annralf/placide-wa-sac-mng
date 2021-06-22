@@ -1,0 +1,284 @@
+{% load static %}
+<div class="mdk-drawer-layout__content page">
+    <div class="container-fluid page__heading-container">
+        <div class="page__heading d-flex align-items-center"></div>
+    </div>
+    <div class="container-fluid page__container">        
+        <div class="card" style="height: 60vh;">
+            <div class="row h-90 m-0">
+                <div class="col-lg-8 py-3 d-flex flex-column h-50">
+                    <div class="card stories-card">
+                        <div class="stories-card__content d-flex align-items-center flex-wrap">
+                            <div class="search-form form-control-rounded search-form--light">
+                                <input type="text" class="form-control" placeholder="Search messages"
+                                    id="searchSample02">
+                                <button class="btn" type="button" role="button"><i
+                                        class="material-icons">search</i></button>
+                            </div>
+                            <div class="dropdown ml-auto">
+                                <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                    <a href="javascript:void(0)" class="dropdown-item">Action</a>
+                                    <a href="javascript:void(0)" class="dropdown-item">Other Action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="javascript:void(0)" class="dropdown-item">Some Other Action</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="flex p-3 d-flex flex-column">
+                        <div data-simplebar style="overflow-y: scroll; overflow-x: hidden; height: 40vh;">
+
+                            <div class="media border-bottom py-3">
+                                <a href="#" class="avatar avatar-sm mr-3">
+                                    <img src="{% static 'images/256_rsz_1andy-lee-642320-unsplash.jpg' %}"
+                                        class="avatar-img rounded-circle" alt="avatar">
+                                </a>
+                                <div class="media-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex">
+                                            <a href="#" class="text-body bold">Jenell D. Matney</a>
+                                        </div>
+                                        <small class="text-muted">4 days ago</small>
+                                    </div>
+                                    <div>Hey guys, just kicking things off here in the chat window. Hope you&#39;re all
+                                        ready to tackle this great project. Let&#39;s smash some Brand Concept &amp;
+                                        Design!</div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="media border-bottom py-3 customer-message">
+                                <div class="media-body">
+                                    <div class="d-flex align-items-center" style="flex-direction: row-reverse;">
+                                        <div class="flex" style="text-align: right; margin-right: 2%;">
+                                            <a href="#" class="text-body bold">Sherri J. Cardenas</a>
+                                        </div>
+                                        <small class="text-muted">3 days ago</small>
+                                    </div>
+                                    <div class="customer-message-text">Nice one @Claire, we&#39;ve got some killer ideas
+                                        kicking about already.</div>
+                                </div>
+                                <a href="#" class="avatar avatar-sm mr-3">
+                                    <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}"
+                                        class="avatar-img rounded-circle" alt="avatar">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group input-group-merge">
+                        <input type="text" class="form-control form-control-appended" required=""
+                            placeholder="Type message">
+                        <div class="input-group-append">
+                            <div class="input-group-text pr-2">
+                                <button class="btn btn-flush" type="button"><i
+                                        class="material-icons">tag_faces</i></button>
+                            </div>
+                            <div class="input-group-text pl-0">
+                                <div class="custom-file custom-file-naked d-flex" style="width: 24px">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" style="color: inherit;" for="customFile">
+                                        <i class="material-icons">attach_file</i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 py-3 px-0 bg-white border-left d-flex flex-column">
+                    <div class="form-group px-3">
+                        <div class="input-group input-group-merge input-group-rounded">
+                            <input type="text" class="form-control form-control-prepended" placeholder="Buscar chat">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <span class="material-icons">filter_list</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex d-flex flex-column">
+                        <div data-simplebar style="height: 50vh;">
+                            <div class="list-group list-group-flush" style="position: relative; z-index: 0;">
+
+
+                                <div class="list-group-item d-flex media align-items-center customer-chat-active">
+                                    <a href="#" class="avatar avatar-sm media-left mr-3">
+                                        <img src="{% static 'images/256_rsz_1andy-lee-642320-unsplash.jpg' %}"
+                                            alt="Avatar" class="avatar-img rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p class="m-0">
+                                            <a href="#" class="text-body"><strong>Jenell D. Matney</strong></a><br>
+                                            <span class="text-muted">Founder and CEO</span>
+                                        </p>
+                                    </div>
+                                    <a href="#" title="Responder"><i
+                                            class="material-icons ml-3 customer-message-icons">reply</i></a>
+                                    <a href="#" title="Guardar"><i
+                                            class="material-icons ml-3 customer-message-icons">save</i></a>
+                                    <a href="#" title="Eliminar"><i
+                                            class="material-icons ml-3 customer-message-icons">delete</i></a>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                            aria-expanded="false"><i
+                                                class="material-icons customer-message-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            <a href="javascript:void(0)" class="dropdown-item">Re asignar</a>
+                                            <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item d-flex media align-items-center">
+                                    <a href="#" class="avatar avatar-sm media-left mr-3">
+                                        <img src="{% static 'images/256_daniel-gaffey-1060698-unsplash.jpg' %}"
+                                            alt="Avatar" class="avatar-img rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p class="m-0">
+                                            <a href="#" class="text-body"><strong>Sherri J. Cardenas</strong></a><br>
+                                            <span class="text-muted">Software Engineer</span>
+                                        </p>
+                                    </div>
+                                    <a href="#" title="Responder"><i
+                                            class="material-icons ml-3 customer-message-icons">reply</i></a>
+                                    <a href="#" title="Guardar"><i
+                                            class="material-icons ml-3 customer-message-icons">save</i></a>
+                                    <a href="#" title="Eliminar"><i
+                                            class="material-icons ml-3 customer-message-icons">delete</i></a>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                            aria-expanded="false"><i
+                                                class="material-icons customer-message-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            <a href="javascript:void(0)" class="dropdown-item">Re asignar</a>
+                                            <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item d-flex media align-items-center">
+                                    <a href="#" class="avatar avatar-sm media-left mr-3">
+                                        <img src="{% static 'images/256_jeremy-banks-798787-unsplash.jpg' %}"
+                                            alt="Avatar" class="avatar-img rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p class="m-0">
+                                            <a href="#" class="text-body"><strong>Joseph S. Ferland</strong></a><br>
+                                            <span class="text-muted">Web Designer</span>
+                                        </p>
+                                    </div>
+                                    <a href="#" title="Responder"><i
+                                            class="material-icons ml-3 customer-message-icons">reply</i></a>
+                                    <a href="#" title="Guardar"><i
+                                            class="material-icons ml-3 customer-message-icons">save</i></a>
+                                    <a href="#" title="Eliminar"><i
+                                            class="material-icons ml-3 customer-message-icons">delete</i></a>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                            aria-expanded="false"><i
+                                                class="material-icons customer-message-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            <a href="javascript:void(0)" class="dropdown-item">Re asignar</a>
+                                            <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item d-flex media align-items-center">
+                                    <a href="#" class="avatar avatar-sm media-left mr-3">
+                                        <img src="{% static 'images/256_joao-silas-636453-unsplash.jpg' %}" alt="Avatar"
+                                            class="avatar-img rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p class="m-0">
+                                            <a href="#" class="text-body"><strong>Bryan K. Davis</strong></a><br>
+                                            <span class="text-muted">Web Developer</span>
+                                        </p>
+                                    </div>
+                                    <a href="#" title="Responder"><i
+                                            class="material-icons ml-3 customer-message-icons">reply</i></a>
+                                    <a href="#" title="Guardar"><i
+                                            class="material-icons ml-3 customer-message-icons">save</i></a>
+                                    <a href="#" title="Eliminar"><i
+                                            class="material-icons ml-3 customer-message-icons">delete</i></a>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                            aria-expanded="false"><i
+                                                class="material-icons customer-message-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            <a href="javascript:void(0)" class="dropdown-item">Re asignar</a>
+                                            <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item d-flex media align-items-center">
+                                    <a href="#" class="avatar avatar-sm media-left mr-3">
+                                        <img src="{% static 'images/256_luke-porter-261779-unsplash.jpg' %}"
+                                            alt="Avatar" class="avatar-img rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p class="m-0">
+                                            <a href="#" class="text-body"><strong>Elizabeth J. Ohara</strong></a><br>
+                                            <span class="text-muted">Business Analyst</span>
+                                        </p>
+                                    </div>
+                                    <a href="#" title="Responder"><i
+                                            class="material-icons ml-3 customer-message-icons">reply</i></a>
+                                    <a href="#" title="Guardar"><i
+                                            class="material-icons ml-3 customer-message-icons">save</i></a>
+                                    <a href="#" title="Eliminar"><i
+                                            class="material-icons ml-3 customer-message-icons">delete</i></a>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                            aria-expanded="false"><i
+                                                class="material-icons customer-message-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            <a href="javascript:void(0)" class="dropdown-item">Re asignar</a>
+                                            <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item d-flex media align-items-center">
+                                    <a href="#" class="avatar avatar-sm media-left mr-3">
+                                        <img src="{% static 'images/256_michael-dam-258165-unsplash.jpg' %}"
+                                            alt="Avatar" class="avatar-img rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p class="m-0">
+                                            <a href="#" class="text-body"><strong>Kaci M. Langston</strong></a><br>
+                                            <span class="text-muted">Human Resources</span>
+                                        </p>
+                                    </div>
+                                    <a href="#" title="Responder"><i
+                                            class="material-icons ml-3 customer-message-icons">reply</i></a>
+                                    <a href="#" title="Guardar"><i
+                                            class="material-icons ml-3 customer-message-icons">save</i></a>
+                                    <a href="#" title="Eliminar"><i
+                                            class="material-icons ml-3 customer-message-icons">delete</i></a>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                            aria-expanded="false"><i
+                                                class="material-icons customer-message-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            <a href="javascript:void(0)" class="dropdown-item">Re asignar</a>
+                                            <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

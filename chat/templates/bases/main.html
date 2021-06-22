@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WhatsApp Admin</title>
+    {% load static %}
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'vendor/simplebar.min.css' %}" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Material Design Icons -->
+    <link type="text/css" href="{% static 'css/vendor-material-icons.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-material-icons.rtl.css' %}" rel="stylesheet">
+
+    <!-- Font Awesome FREE Icons -->
+    <link type="text/css" href="{% static 'css/vendor-fontawesome-free.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-fontawesome-free.rtl.css' %}" rel="stylesheet">
+
+
+    <!-- Global site tag (gtag.js' %}) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133433427-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-133433427-1');
+</script>
+
+
+
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=327167911228268&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+
+
+    <!-- Flatpickr -->
+    <link type="text/css" href="{% static 'css/vendor-flatpickr.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-flatpickr.rtl.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-flatpickr-airbnb.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/vendor-flatpickr-airbnb.rtl.css' %}" rel="stylesheet">
+
+    <!-- Vector Maps -->
+    <link type="text/css" href="{% static 'vendor/jqvmap/jqvmap.min.css' %}" rel="stylesheet">
+
+
+
+</head>
+
+<body class="layout-default">
+    <div class="preloader"></div>
+    {% block content %}
+    {% endblock %}
+  
+    <!-- jQuery -->
+    <script src="{% static 'vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'vendor/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <script src="{% static 'vendor/simplebar.min.js' %}"></script>
+
+    <!-- DOM Factory -->
+    <script src="{% static 'vendor/dom-factory.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'vendor/material-design-kit.js' %}"></script>
+
+    <!-- App -->
+    <script src="{% static 'js/toggle-check-all.js' %}"></script>
+    <script src="{% static 'js/check-selected-row.js' %}"></script>
+    <script src="{% static 'js/dropdown.js' %}"></script>
+    <script src="{% static 'js/sidebar-mini.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+    <!-- App Settings (safe to remove) -->
+    <script src="{% static 'js/app-settings.js' %}"></script>
+
+
+
+    <!-- Flatpickr -->
+    <script src="{% static 'vendor/flatpickr/flatpickr.min.js' %}"></script>
+    <script src="{% static 'js/flatpickr.js' %}"></script>
+
+    <!-- Global Settings -->
+    <script src="{% static 'js/settings.js' %}"></script>
+
+    <!-- Chart.js' %} -->
+    <script src="{% static 'vendor/Chart.min.js' %}"></script>
+
+    <!-- App Charts JS -->
+    <script src="{% static 'js/charts.js' %}"></script>
+
+    <!-- Chart Samples -->
+    <script src="{% static 'js/page.dashboard.js' %}"></script>
+
+    <!-- Vector Maps -->
+    <script src="{% static 'vendor/jqvmap/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'vendor/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static 'js/vector-maps.js' %}"></script>
+
+</body>
+
+</html>

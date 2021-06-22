@@ -1,0 +1,28 @@
+.customer-chat-active{
+    background-color: #b6ffbe !important;
+}
+
+.customer-message{
+    border-radius: 10px 0px 10px 10px;
+    background-color: #ededef;
+    padding: 5%;
+}
+
+.customer-message-text{
+    text-align: right;
+    margin-right: 2%;
+}
+
+.customer-message-icons{
+    color: #4a6b4d !important;
+    font-size: 25px !important;
+}
+
+.alert-text{
+    color: #f75934 !important;
+    font-weight: bolder;
+}
+
+.login-background{
+    background-color: #308038 !important;
+}

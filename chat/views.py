@@ -19,7 +19,8 @@ class Index(View):
     template = 'index.html'
 
     def get(self, request):
-        return render(request, self.template)
+        agent_name = "testing agent"
+        return render(request, self.template, {'agent_name': agent_name})
 
 @api_view(['GET','POST','PUT'])
 def agents(request, name = None, instance_id = None):
