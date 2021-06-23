@@ -15,7 +15,7 @@ class Message(View):
     def get(self, request, type='active'):
         if type == 'active':
             return render(request, self.activesTmp) 
-          
+
         if type == 'queue':
             return render(request, self.queueTmp) 
 

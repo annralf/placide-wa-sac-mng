@@ -1,5 +1,7 @@
 from django.db import models
 
+from mongoengine import *
+
 class ActivitiesPerformance(models.Model):
     name = models.CharField(max_length=45, blank=True, null=True)
     status = models.IntegerField(blank=True, null=True)
@@ -172,17 +174,19 @@ class UsersStatus(models.Model):
         managed = False
         db_table = 'users_status'
 
-class Agent(models.Model):
-    agent_name = models.CharField(max_length = 20)
+class Chat(Document):
+    instance_name = StringField()
+    agent_id = StringField()
+    dialog_id = StringField()
 
-class Client(models.Model):
-    ws_id = models.CharField(max_length = 50)
-    assigned = models.BooleanField(default = False)
+class Message(Document):
+    id_message = StringField()
+    body = StringField()
+    author =  StringField()
+    sender_name = StringField()
+    time = IntField()
+    dialog_id = StringField()
+    assigned = BooleanField()
 
-class Chat(models.Model):
-    instance_name = models.CharField(max_length = 50)
-    agent = models.ForeignKey(Agent, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-
-class Message(models.Model):
-    pass
+class Queue(Document):
+    unasigned_messages = ListField(EmbeddedDocumentField(Message))
