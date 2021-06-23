@@ -8,6 +8,7 @@ from . import views
 urlpatterns = [
     url('user/', include('user.urls')),
     url('message/', include('message.urls')),
+    url('client/', include('client.urls')),
     re_path(r'^$', views.Index.as_view(),name='index'),
     # re_path(r'^message/?', message.Message.as_view(),name='message'),
     re_path(r'^messages/?(?P<id>[\w@\.]+)?', views.messages, name='messages'),

@@ -26,3 +26,12 @@
 .login-background{
     background-color: #308038 !important;
 }
+
+.user_list{
+    height: 10vh !important;
+    justify-content: center !important;
+}
+
+select{
+    font-size: 1rem !important;
+}
