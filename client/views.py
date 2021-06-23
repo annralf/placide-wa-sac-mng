@@ -4,9 +4,9 @@ from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 
-from  . import models as User
+from  .models import Cli as Cli
 
-class Login(View):
+class Client(View):
     template = 'user/login.html'
 
     def get(self, request):
@@ -28,7 +28,8 @@ class Login(View):
 class Admin(View):
     template = 'user/admin.html'
     def get(self, request):
-        return render(request,self.template)
+        response = Cli.getSetup("Jose Lopez")
+        return render(request,self.template, {'agent_name': response})
 
 
 class Edit(View):

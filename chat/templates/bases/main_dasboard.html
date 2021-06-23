@@ -158,7 +158,7 @@
                                             aria-expanded="false"><i
                                                 class="material-icons customer-message-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right" style="display: none;">
-                                            <a href="javascript:void(0)" class="dropdown-item">Re asignar</a>
+                                            <a href="javascript:void(0)" class="dropdown-item" data-target="#modal-center" data-toggle="modal">Re asignar</a>
                                             <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
                                         </div>
                                     </div>
@@ -310,4 +310,24 @@
             </div>
         </div>
     </div>
+</div>
+<!-- Modals -->
+<div id="modal-center" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-center-title" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-center-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div> <!-- // END .modal-header -->
+            <div class="modal-body">
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            </div> <!-- // END .modal-body -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> <!-- // END .modal-footer -->
+        </div> <!-- // END .modal-content -->
+    </div> <!-- // END .modal-dialog -->
 </div>
