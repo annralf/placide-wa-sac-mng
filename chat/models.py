@@ -1,5 +1,4 @@
 from django.db import models
-
 from mongoengine import *
 
 class ActivitiesPerformance(models.Model):
@@ -125,7 +124,6 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
-
 
 class Users(models.Model):
     name = models.CharField(max_length=45, blank=True, null=True)
