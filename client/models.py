@@ -54,9 +54,10 @@ class LabelsClient(models.Model):
     class Meta:
         managed = False
         db_table = 'labels_client'
-        
+
 class Cli(models.Model):
 
     @classmethod
     def getSetup(self, clientUser):
-        return clientUser
+        current = Client.objects.get(name=clientUser)
+        return { instance_id: current.instance, token: current.token }

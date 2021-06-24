@@ -23,6 +23,7 @@ urllib3 = "==1.26.4"
 whitenoise = "==5.2.0"
 Django = "==3.0.5"
 jsonfield = "*"
+mongoengine = "*"
 
 [dev-packages]
 

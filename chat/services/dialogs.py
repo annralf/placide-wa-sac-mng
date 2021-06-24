@@ -25,5 +25,22 @@ def getDialogInfo():
 
     r = requests.post(f'{API_URL}/sendMessage', params = payload, 
                         data = {'body': body} )
-    print(r.text)
+    return r
+
+# Set "typing..." status to chat
+def toggleTypingStatus( chatId = None, phone = None, on = True, duration = 3 ):
+    payload = {'token': TOKEN}
+
+    # Optionals parameters
+    if not chatId and not phone:
+        raise Exception('Need chatId or phone to set the state')
+    if chatId is not None:
+        payload['chatId'] = chatId
+    else:
+        payload['phone'] = phone
+
+    payload['on'] = on
+    payload['duration'] = duration
+
+    r = requests.post(f'{API_URL}/typing', params = payload)
     return r

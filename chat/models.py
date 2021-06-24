@@ -1,4 +1,5 @@
 from django.db import models
+from mongoengine import *
 
 class ActivitiesPerformance(models.Model):
     name = models.CharField(max_length=45, blank=True, null=True)
@@ -124,9 +125,18 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
+class Chat(Document):
+    agent_id = StringField()
+    dialog_id = StringField()
 
-class Message(models.Model):
-    pass
+class Message(EmbeddedDocument):
+    id_message = StringField()
+    body = StringField()
+    author =  StringField()
+    sender_name = StringField()
+    time = IntField()
+    dialog_id = StringField()
+    assigned = BooleanField()
 
-class Agent(models.Model):
-    agent_name = models.CharField(max_length = 20)
+class Queue(Document):
+    unasigned_messages = ListField(EmbeddedDocumentField("Message"))

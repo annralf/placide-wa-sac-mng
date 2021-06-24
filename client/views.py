@@ -28,7 +28,7 @@ class Client(View):
 class Admin(View):
     template = 'user/admin.html'
     def get(self, request):
-        response = Cli.getSetup("Jose Lopez")
+        response = 'Jose Lopez'#Cli.getSetup("Jose Lopez")
         return render(request,self.template, {'agent_name': response})
 
 
