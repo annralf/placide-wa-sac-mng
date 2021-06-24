@@ -4,7 +4,8 @@ from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 
-from  . import models as User
+from . import models as User
+from .agent_form import AgentForm
 
 class Login(View):
     template = 'user/login.html'
@@ -31,10 +32,16 @@ class Admin(View):
         return render(request,self.template)
 
 
-class Edit(View):
-    template = 'user/edit.html'
-    def get(self, request):
-        return render(request,self.template)
+class Agent(View):
+    
+    def edit(request):
+        template = 'user/edit.html'
+        return render(request,template)
+
+    def new(request):
+        newTemplate = 'user/new.html'
+        form = AgentForm()
+        return render(request, newTemplate,{'form':form})
 
 class List(View):
     template = 'user/list.html'

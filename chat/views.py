@@ -10,7 +10,7 @@ from .services.messages import getMessages, sendMessage
 from .services.dialogs import getDialogs
 
 # Models
-from .models import Message, Agent, Chat
+# from .models import Message, Agent, Chat
 
 def std_response(msg='successful',pld={}):
     return Response({"status": 'Ok', "payload": pld, "message": msg})
