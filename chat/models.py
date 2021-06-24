@@ -179,7 +179,7 @@ class Chat(Document):
     agent_id = StringField()
     dialog_id = StringField()
 
-class Message(Document):
+class Message(EmbeddedDocument):
     id_message = StringField()
     body = StringField()
     author =  StringField()
