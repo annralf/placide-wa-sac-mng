@@ -10,7 +10,7 @@ from .services.messages import getMessages, sendMessage
 from .services.dialogs import getDialogs
 
 # Models
-from .models import Message, Chat
+from .models import Message, Chat, Queue
 
 def std_response(msg='successful',pld={}):
     return Response({"status": 'Ok', "payload": pld, "message": msg})
@@ -91,12 +91,28 @@ def hook(request):
     if request.method == 'POST':
         if 'messages' in request.data:
             print(request.data)
-            ws_id = request.data['messages'][0]['id']
+            dialog_id = request.data['messages'][0]['chatId']
+            r = Chat.objects(dialog_id__exists=dialog_id)
+            if not r:
+                message = Message()
+                message.id_message = request.data['messages'][0]['id']
+                message.body = request.data['messages'][0]['body']
+                message.author = request.data['messages'][0]['author']
+                message.sender_name = request.data['messages'][0]['senderName']
+                message.time = request.data['messages'][0]['time']
+                message.dialog_id = request.data['messages'][0]['chatId']
+                message.assigned = False
+                print(message.objects())
+                queue = Queue()
+                queue.unasigned_messages.append(message)
+                print(queue.objects())
+                queue.save()
+
         return std_response('Ok')
 
 @api_view(['GET'])
 def queue(request):
     if request.method == 'GET':
-        pass
-#        r = Queue.objects.filter(message = {'assigned':False})
-#        return Response(r.values_list())
+        r = Queue()
+        print(dir(r))
+        return Response('a')

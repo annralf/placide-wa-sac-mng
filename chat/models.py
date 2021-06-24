@@ -125,55 +125,7 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
-class Users(models.Model):
-    name = models.CharField(max_length=45, blank=True, null=True)
-    lastname = models.CharField(max_length=45, blank=True, null=True)
-    username = models.CharField(max_length=45, blank=True, null=True)
-    password = models.TextField(blank=True, null=True)
-    role = models.ForeignKey('UsersRole', models.DO_NOTHING, db_column='role', blank=True, null=True)
-    status = models.ForeignKey('UsersStatus', models.DO_NOTHING, db_column='status', blank=True, null=True)
-    created_at = models.DateField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'users'
-
-
-class UsersActivityLog(models.Model):
-    user = models.ForeignKey(Users, models.DO_NOTHING, db_column='user', blank=True, null=True)
-    activity = models.ForeignKey(ActivitiesPerformance, models.DO_NOTHING, db_column='activity', blank=True, null=True)
-    status = models.CharField(max_length=45, blank=True, null=True)
-    created_at = models.CharField(max_length=45, blank=True, null=True)
-    updated_at = models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'users_activity_log'
-
-
-class UsersRole(models.Model):
-    name = models.CharField(max_length=45, blank=True, null=True)
-    status = models.IntegerField(blank=True, null=True)
-    created_at = models.CharField(max_length=45, blank=True, null=True)
-    upated_at = models.DateField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'users_role'
-
-
-class UsersStatus(models.Model):
-    name = models.CharField(max_length=45, blank=True, null=True)
-    status = models.IntegerField(blank=True, null=True)
-    created_at = models.CharField(max_length=45, blank=True, null=True)
-    upated_at = models.DateField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'users_status'
-
 class Chat(Document):
-    instance_name = StringField()
     agent_id = StringField()
     dialog_id = StringField()
 
@@ -187,4 +139,4 @@ class Message(EmbeddedDocument):
     assigned = BooleanField()
 
 class Queue(Document):
-    unasigned_messages = ListField(EmbeddedDocumentField(Message))
+    unasigned_messages = ListField(EmbeddedDocumentField("Message"))
