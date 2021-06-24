@@ -41,7 +41,7 @@ class Agent(View):
     def new(request):
         newTemplate = 'user/new.html'
         form = AgentForm()
-        return render(request, newTemplate,{'form':form})
+        return render(request, newTemplate,{'form':form, 'lol':'casa'})
 
 class List(View):
     template = 'user/list.html'
