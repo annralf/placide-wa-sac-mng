@@ -20,6 +20,8 @@ class Client(models.Model):
     instance = models.TextField(blank=True, null=True)
     token = models.TextField(blank=True, null=True)
     api_setup = models.IntegerField(blank=True, null=True)
+    def __str__(self):
+        return "%s" % (self.name)
 
     class Meta:
         managed = False

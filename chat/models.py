@@ -131,8 +131,8 @@ class Chat(Document):
     status =  BooleanField()
     type = StringField() #allow to review the chat status (new-queue-wait)
     label = StringField()
-    created_at =  Date()
-    update_at =  Date()
+    created_at =  DateField()
+    update_at =  DateField()
 
 class Message(EmbeddedDocument):
     id_message = StringField()

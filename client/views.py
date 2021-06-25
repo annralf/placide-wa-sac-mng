@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 
 from  .models import Cli as Cli
+from .form import New as NewForm
 
 class Client(View):
     template = 'user/login.html'
@@ -36,6 +37,13 @@ class Edit(View):
     template = 'user/edit.html'
     def get(self, request):
         return render(request,self.template)
+
+class New(View):
+    template = 'user/edit.html'
+    def get(self, request):
+        form = NewForm
+        return render(request,self.template, {'form': form})
+
 
 class List(View):
     template = 'user/list.html'
