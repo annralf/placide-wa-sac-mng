@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from datetime import datetime
+import json
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -13,8 +14,8 @@ from .services.dialogs import getDialogs
 # Models
 from .models import Message, Chat, Queue
 
-def std_response(msg='successful',pld={}):
-    return Response({"status": 'Ok', "payload": pld, "message": msg})
+def std_response(msg='successful',pld={},status='Ok'):
+    return Response({"status": status, "payload": pld, "message": msg})
 
 class Index(View):
     template = 'index.html'
@@ -81,11 +82,30 @@ def messages(request,id = None):
                 r.append(aux.json())
             return std_response(msg='All messages sent',pld=r)
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def dialogs(request):
     if request.method == 'GET':
-        r = getDialogs()
-        return std_response(pld=r.json())
+        if 'cached' in request.query_params:
+            chat = Chat.objects.all()
+            print(dir(chat))
+            return std_response(pld=json.loads(chat.to_json()))
+        else:
+            r = getDialogs()
+            return std_response(pld=r.json())
+
+    if request.method == 'POST':
+        if not 'agent_id' in request.data or not 'chat_id' in request.data:
+            return std_response(status='Error', msg='Missing argument')
+        else:
+            #set agent to a chat
+            chat_id = request.data['chat_id']
+            agent_id = request.data['agent_id']
+            chat = Chat.objects(chat_id=chat_id)
+            fields = {
+                'agent_id': agent_id
+            }
+            chat.update(**fields)
+            return std_response()
 
 @api_view(['POST'])
 def hook(request):
@@ -106,8 +126,8 @@ def hook(request):
                 else:
                     chat_status = 'new'
                 fields = {
-                    'type': 'test',
-                    'status': chat_request_id,
+                    'type_chat': chat_status,
+                    'status': False,
                     'updated_at': datetime.utcnow
                 }
                 is_assigned.update_one(**fields)
@@ -116,9 +136,8 @@ def hook(request):
                 chat_status = 'queue-2'
                 fields = {
                     'chat_id': chatId,
-                    'agent_id': agentId,
-                    'status': chat_request_id,
-                    'type': chat_status,
+                    'status': True,
+                    'type_chat': 'queue',
                     'created_at': created_at,
                 }
                 chat = Chat(**fields)
@@ -129,6 +148,5 @@ def hook(request):
 @api_view(['GET'])
 def queue(request):
     if request.method == 'GET':
-        r = Queue()
-        print(dir(r))
-        return Response('a')
+        chat = Chat.objects(type_chat='queue')
+        return std_response(pld=json.loads(chat.to_json()))
