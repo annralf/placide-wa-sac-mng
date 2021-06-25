@@ -87,8 +87,7 @@ def dialogs(request):
     if request.method == 'GET':
         if 'cached' in request.query_params:
             chat = Chat.objects.all()
-            print(dir(chat))
-            return std_response(pld=json.loads(chat.to_json()))
+            return std_response(pld=chat.to_mongo)
         else:
             r = getDialogs()
             return std_response(pld=r.json())
@@ -146,7 +145,18 @@ def hook(request):
         return std_response('Ok')
 
 @api_view(['GET'])
-def queue(request):
+def chat_info(request,status):
     if request.method == 'GET':
-        chat = Chat.objects(type_chat='queue')
+        chat_status = status
+        print(status)
+        chat = Chat.objects(type_chat=chat_status)
         return std_response(pld=json.loads(chat.to_json()))
+
+@api_view(['POST'])
+def update_label(request):
+    if request.method == 'POST':
+        chat_id = request.data['chat_id']
+        label = request.data['label']
+        chat = Chat.objects(chat_id=chat_id)
+        chat.update(label=label)
+        return std_response()
