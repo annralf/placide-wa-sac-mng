@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 
 from django.contrib.auth.forms import AuthenticationForm
@@ -39,10 +39,16 @@ class Edit(View):
         return render(request,self.template)
 
 class New(View):
-    template = 'user/edit.html'
+    template = 'client/new.html'
     def get(self, request):
         form = NewForm
         return render(request,self.template, {'form': form})
+    def post(self, request):
+        form = NewForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return render(request,self.template, {'form': form})
+
 
 
 class List(View):
