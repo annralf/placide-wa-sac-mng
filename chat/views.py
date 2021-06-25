@@ -93,22 +93,33 @@ def hook(request):
         if 'messages' in request.data:
             print(request.data)
             chatId = request.data['messages'][0]['chatId']
-            is_assigned = Chat.objects(chat_id__exist=chatId)
+            is_assigned = Chat.objects(chat_id=chatId)
             agentId = None
             chat_request_id = request.data['messages'][0]['id']
             created_at = datetime.fromtimestamp(request.data['messages'][0]['time'])
             chat_is_read = chat_request_id.split("_")
-            chat = Chat()
             if  is_assigned:
                 '''actualizar update_at/status(0)/'''
                 if chat_is_read[0] == 'false':
                     chat_status = 'wait'
                 else:
                     chat_status = 'new'
-                #here update sentence
+                fields = {
+                    'type': chat_status,
+                    'status': False,
+                    'upated_at': datetime.utcnow
+                }
+                is_assigned.update(**fields)
             else:
-                 chat_status = 'queue'
-                #here create           
+                chat_status = 'queue'
+                fields = {
+                    'chat_id': chatId,
+                    'status': True,
+                    'type': 'queue',
+                    'created_at': created_at,
+                }
+                chat = Chat(**fields)
+                chat.save()
 
         return std_response('Ok')
 

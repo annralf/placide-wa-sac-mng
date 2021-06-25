@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 from mongoengine import *
 
 class ActivitiesPerformance(models.Model):
@@ -131,8 +132,8 @@ class Chat(Document):
     status =  BooleanField()
     type = StringField() #allow to review the chat status (new-queue-wait)
     label = StringField()
-    created_at =  Date()
-    update_at =  Date()
+    created_at =  DateTimeField(default=datetime.utcnow)
+    updated_at =  DateTimeField(default=datetime.utcnow)
 
 class Message(EmbeddedDocument):
     id_message = StringField()
