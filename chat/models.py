@@ -130,7 +130,7 @@ class Chat(Document):
     agent_id = StringField()
     chat_id = StringField()
     status =  BooleanField()
-    type = StringField() #allow to review the chat status (new-queue-wait)
+    type_chat = StringField() #allow to review the chat status (new-queue-wait)
     label = StringField()
     created_at =  DateTimeField(default=datetime.utcnow)
     updated_at =  DateTimeField(default=datetime.utcnow)
