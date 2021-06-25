@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from collections import UserList
+from django.shortcuts import redirect, render
 from django.views import View
 
 from django.contrib.auth.forms import AuthenticationForm
@@ -40,8 +41,13 @@ class Agent(View):
 
     def new(request):
         newTemplate = 'user/new.html'
+        if request.method == 'POST':
+            form = AgentForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect(UserList)
         form = AgentForm()
-        return render(request, newTemplate,{'form':form, 'lol':'casa'})
+        return render(request, newTemplate,{'form':form})
 
 class List(View):
     template = 'user/list.html'

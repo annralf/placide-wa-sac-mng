@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from datetime import datetime
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -91,22 +92,23 @@ def hook(request):
     if request.method == 'POST':
         if 'messages' in request.data:
             print(request.data)
-            dialog_id = request.data['messages'][0]['chatId']
-            r = Chat.objects(dialog_id__exists=dialog_id)
-            if not r:
-                message = Message()
-                message.id_message = request.data['messages'][0]['id']
-                message.body = request.data['messages'][0]['body']
-                message.author = request.data['messages'][0]['author']
-                message.sender_name = request.data['messages'][0]['senderName']
-                message.time = request.data['messages'][0]['time']
-                message.dialog_id = request.data['messages'][0]['chatId']
-                message.assigned = False
-                print(message.objects())
-                queue = Queue()
-                queue.unasigned_messages.append(message)
-                print(queue.objects())
-                queue.save()
+            chatId = request.data['messages'][0]['chatId']
+            is_assigned = Chat.objects(chat_id__exist=chatId)
+            agentId = None
+            chat_request_id = request.data['messages'][0]['id']
+            created_at = datetime.fromtimestamp(request.data['messages'][0]['time'])
+            chat_is_read = chat_request_id.split("_")
+            chat = Chat()
+            if  is_assigned:
+                '''actualizar update_at/status(0)/'''
+                if chat_is_read[0] == 'false':
+                    chat_status = 'wait'
+                else:
+                    chat_status = 'new'
+                #here update sentence
+            else:
+                 chat_status = 'queue'
+                #here create           
 
         return std_response('Ok')
 

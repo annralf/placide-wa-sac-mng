@@ -127,7 +127,12 @@ class DjangoSession(models.Model):
 
 class Chat(Document):
     agent_id = StringField()
-    dialog_id = StringField()
+    chat_id = StringField()
+    status =  BooleanField()
+    type = StringField() #allow to review the chat status (new-queue-wait)
+    label = StringField()
+    created_at =  Date()
+    update_at =  Date()
 
 class Message(EmbeddedDocument):
     id_message = StringField()

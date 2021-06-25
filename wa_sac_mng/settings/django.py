@@ -108,7 +108,9 @@ DATABASES = {
 #            'username': 'admin',
 #            'password': 'rVWMftMT4DjlIEAh',
 #        }
-    }
+    },'OPTIONS': {
+         "init_command": "SET foreign_key_checks = 0;",
+    },
 }
 
 
