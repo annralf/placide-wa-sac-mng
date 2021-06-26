@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from client.models import Client, ActivitiesPerformance
 
 class UsersRole(models.Model):
@@ -14,15 +15,15 @@ class UsersRole(models.Model):
         db_table = 'users_role'
 
 class Users(models.Model):
-    id = models.OneToOneField(Client, models.DO_NOTHING, db_column='id', primary_key=True)
+    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=45, blank=True, null=True)
     lastname = models.CharField(max_length=45, blank=True, null=True)
     username = models.CharField(max_length=45, blank=True, null=True)
-    password = models.TextField(blank=True, null=True)
+    password = models.CharField(max_length=45, blank=True, null=False)
     role = models.ForeignKey( UsersRole,models.DO_NOTHING, db_column='role_id', blank=True, null=True )
-    status = models.IntegerField(blank=True, null=True)
-    created_at = models.DateField(blank=True, null=True)
-    client_id = models.CharField(max_length=45, blank=True, null=True)
+    status = models.IntegerField(blank=True, null=False)
+    created_at = models.DateTimeField(default=timezone.now)
+    client_id =  models.IntegerField(blank=True, null=False)
 
     class Meta:
         managed = False

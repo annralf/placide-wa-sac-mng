@@ -11,7 +11,7 @@
             <h1 class="m-0">Agentes</h1>
         </div>
     </div>
-    <div class="container-fluid page__container">
+    <div class="container-fluid page__container" style="overflow-y: auto; height: 66vh;">
         <div class="row">
             <div class="col-md-12">
                 <div class="d-flex mb-3">
@@ -31,31 +31,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="stories-cards mb-4">
-                    <div class="card user_list">
-                        <div class="d-flex align-items-center flex-wrap">
-                            <div class="m-4">
-                                <a href="#" class="d-flex align-items-center text-muted"></a>
-                            </div>
-                            <div class="stories-card__title flex">
-                                <h5 class="card-title m-0"><a href="" class="text-body">Jose Perez</a></h5>
-                                <small class="text-muted"><strong>Activo</strong></small>
-                            </div>
-                            <div class="ml-auto d-flex align-items-center">
-                                <div class="avatar-group mr-3">
-                                    <div class="dropdown ml-auto">
-                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
-                                            <a href="javascript:void(0)" class="dropdown-item">Editar info</a>
-                                            <a href="javascript:void(0)" class="dropdown-item">Ver Estatus</a>
+                {% for agent in agents %}
+                    <div class="stories-cards mb-4">
+                        <div class="card user_list">
+                            <div class="d-flex align-items-center flex-wrap">
+                                <div class="m-4">
+                                    <a href="#" class="d-flex align-items-center text-muted"></a>
+                                </div>
+                                <div class="stories-card__title flex">
+                                    <h5 class="card-title m-0"><a href="/user/edit/{{ agent.id }}" class="text-body">{{ agent.name }} {{ agent.lastname }}</a></h5>
+                                    <small class="text-muted"><strong>{{ agent.status }}</strong></small>
+                                </div>
+                                <div class="ml-auto d-flex align-items-center">
+                                    <div class="avatar-group mr-3">
+                                        <div class="dropdown ml-auto">
+                                            <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                                <a href="/user/edit/{{ agent.id }}" class="dropdown-item">Editar info</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                {% endfor %}
                 <div class="d-flex flex-row align-items-center mb-3">
                     <div class="form-inline">
                         Ver

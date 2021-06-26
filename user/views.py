@@ -34,22 +34,36 @@ class Admin(View):
 
 
 class Agent(View):
-    
-    def edit(request):
+    def edit(request,id):
         template = 'user/edit.html'
-        return render(request,template)
-
+        if request.method == 'POST':
+            agent =  User.Users.objects.get(id=id)
+            form = AgentForm(request.POST, instance= agent)
+            if form.is_valid():
+                form.save()
+                return redirect("/user/list")
+            else:
+                print(form.errors)
+        else:
+            agent = User.Users.objects.get(id=id)
+            rol = User.UsersRole.objects.all()
+            return render(request,template,{'agent':agent, 'rol':rol})
+    
     def new(request):
         newTemplate = 'user/new.html'
         if request.method == 'POST':
             form = AgentForm(request.POST)
             if form.is_valid():
                 form.save()
-                return redirect(UserList)
+                return redirect("/user/list")
+            else:
+                print(form.errors) 
         form = AgentForm()
         return render(request, newTemplate,{'form':form})
 
 class List(View):
     template = 'user/list.html'
     def get(self, request):
-        return render(request,self.template)
+        client_id = 1
+        agents = User.Users.objects.filter(client_id=client_id)
+        return render(request,self.template,{'agents': agents})
