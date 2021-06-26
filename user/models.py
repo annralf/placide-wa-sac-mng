@@ -22,7 +22,7 @@ class Users(models.Model):
     password = models.CharField(max_length=45, blank=True, null=False)
     role = models.ForeignKey( UsersRole,models.DO_NOTHING, db_column='role_id', blank=True, null=True )
     status = models.IntegerField(blank=True, null=False)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at =models.DateTimeField(default=timezone.now)
     client_id =  models.IntegerField(blank=True, null=False)
 
     class Meta:

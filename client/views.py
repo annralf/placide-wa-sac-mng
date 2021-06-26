@@ -47,6 +47,9 @@ class New(View):
         form = NewForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect("/user/list")
+        else:
+            print(form.errors)
         return render(request,self.template, {'form': form})
 
 

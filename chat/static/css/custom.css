@@ -35,3 +35,7 @@
 select{
     font-size: 1rem !important;
 }
+
+.custom-control-label{
+    background-color: #308038 !important;
+}
