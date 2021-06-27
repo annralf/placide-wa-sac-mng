@@ -18,13 +18,18 @@
                         <span class="sidebar-menu-text">En Espera</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse show " id="dashboards_menu">
-                        <li class="sidebar-menu-item active">
-                            <a class="sidebar-menu-button" href="index.html">
-                                <span class="sidebar-menu-text">Default</span>
-                            </a>
-                        </li>                                        
-                    </ul>
+                    {% for chat in chats %}
+                        {{ chat['queue'] }}
+                        {% if 'queue' in chat %}
+                            <ul class="sidebar-submenu collapse show " id="dashboards_menu">
+                                <li class="sidebar-menu-item active">
+                                    <a class="sidebar-menu-button" href="index.html">
+                                        <span class="sidebar-menu-text">{{ chat.sender }}</span>
+                                    </a>
+                                </li>                                        
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
                 </li>
 
                 <li class="sidebar-menu-item">

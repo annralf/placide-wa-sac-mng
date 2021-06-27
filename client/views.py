@@ -7,6 +7,8 @@ from django.contrib.auth import login, authenticate
 from  .models import Cli as Cli
 from .form import New as NewForm
 
+from message.manager import Manager
+
 class Client(View):
     template = 'user/login.html'
 
@@ -29,8 +31,10 @@ class Client(View):
 class Admin(View):
     template = 'user/admin.html'
     def get(self, request):
+        chatList = Manager.getChats('all')
+        print(chatList)
         response = 'Jose Lopez'#Cli.getSetup("Jose Lopez")
-        return render(request,self.template, {'agent_name': response})
+        return render(request,self.template, {'agent_name': response, 'chats': chatList})
 
 
 class Edit(View):
@@ -41,7 +45,7 @@ class Edit(View):
 class New(View):
     template = 'client/new.html'
     def get(self, request):
-        form = NewForm
+        form = NewForm        
         return render(request,self.template, {'form': form})
     def post(self, request):
         form = NewForm(request.POST)

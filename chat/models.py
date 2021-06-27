@@ -129,6 +129,7 @@ class DjangoSession(models.Model):
 class Chat(Document):
     agent_id = StringField()
     chat_id = StringField()
+    sender = StringField()
     status =  BooleanField()
     type_chat = StringField() #allow to review the chat status (new-queue-wait)
     label = StringField()

@@ -110,15 +110,14 @@ def dialogs(request):
 def hook(request):
     if request.method == 'POST':
         if 'messages' in request.data:
-            print(request.data)
             chatId = request.data['messages'][0]['chatId']
             is_assigned = Chat.objects(chat_id=chatId)
             agentId = None
             chat_request_id = request.data['messages'][0]['id']
+            sender = request.data['messages'][0]['senderName']
             created_at = datetime.fromtimestamp(request.data['messages'][0]['time'])
             chat_is_read = chat_request_id.split("_")
             if  is_assigned:
-                print('assigned')
                 '''actualizar update_at/status(0)/'''
                 if chat_is_read[0] == 'false':
                     chat_status = 'wait'
@@ -131,25 +130,28 @@ def hook(request):
                 }
                 is_assigned.update_one(**fields)
             else:
-                print('no assigned')
-                chat_status = 'queue-2'
+                chat_status = 'queue'
                 fields = {
                     'chat_id': chatId,
+                    'sender': sender,
+                    'agent_id': agentId,
                     'status': True,
-                    'type_chat': 'queue',
+                    'type_chat': chat_status,
                     'created_at': created_at,
                 }
                 chat = Chat(**fields)
                 chat.save()
-            print(fields)
         return std_response('Ok')
 
 @api_view(['GET'])
 def chat_info(request,status):
     if request.method == 'GET':
+        print('lol')
         chat_status = status
-        print(status)
-        chat = Chat.objects(type_chat=chat_status)
+        if status == "all":
+            chat = Chat.objects()
+        else:    
+            chat = Chat.objects(type_chat=chat_status)
         return std_response(pld=json.loads(chat.to_json()))
 
 @api_view(['POST'])
