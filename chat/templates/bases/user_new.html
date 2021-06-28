@@ -1,0 +1,70 @@
+{% load static %}
+{% load widget_tweaks %}
+<div class="mdk-drawer-layout__content page">
+    <div class="container-fluid  page__heading-container">
+        <div class="page__heading">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+                </ol>
+            </nav>
+            <h1 class="m-0">Editar perfil</h1>
+        </div>
+    </div>
+    <div class="container-fluid page__container">
+        <div class="card card-form">
+            <form method="POST" action="/user/new">
+                {% csrf_token %}  
+                <div class="row no-gutters">
+                    <div class="col-lg-4 card-body">
+                        <p><strong class="headings-color">Información de perfil</strong></p>
+                    </div>
+                    <div class="col-lg-8 card-form__body card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="fname">Nombres</label>
+                                    {% render_field form.name type="text" placeholder="Nombres" class="form-control"  %}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="lname">Apellidos</label>
+                                    {% render_field form.lastname type="text" placeholder="Apellidos" class="form-control" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="fname">Usuario de acceso</label>
+                                    {% render_field form.username type="text" placeholder="Usuario" class="form-control"  %}
+                                    {% render_field form.client_id type="hidden" value="1" class="form-control" %}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="lname">Contraseña</label>
+                                    {% render_field form.password  type="password"   class="form-control" %}
+                                </div>
+                            </div>
+                        </div>
+                        <label for="select05">Rol</label>
+                        {% render_field form.role  class="form-control" %}
+                        </select>
+                        <div class="form-group">
+                            <label for="subscribe">Estatus</label><br>
+                            <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                {% render_field form.status type="checkbox"  checked=""  class="custom-control-input" value="1" %}
+                                <label class="custom-control-label" for="subscribe">Activo</label>
+                            </div>
+                            <label for="subscribe" class="mb-0">Activo</label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>            
+    </div>
+</div>
