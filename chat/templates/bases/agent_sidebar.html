@@ -18,17 +18,14 @@
                         <span class="sidebar-menu-text">En Espera</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    {% for chat in chats %}
-                        {{ chat['queue'] }}
-                        {% if 'queue' in chat %}
+                    {% for queues in queue %}
                             <ul class="sidebar-submenu collapse show " id="dashboards_menu">
                                 <li class="sidebar-menu-item active">
                                     <a class="sidebar-menu-button" href="index.html">
-                                        <span class="sidebar-menu-text">{{ chat.sender }}</span>
+                                        <span class="sidebar-menu-text">{{ queues.sender }}</span>
                                     </a>
                                 </li>                                        
                             </ul>
-                        {% endif %}
                     {% endfor %}
                 </li>
 
@@ -38,13 +35,15 @@
                         <span class="sidebar-menu-text">Activos</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse" id="apps_menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="app-trello.html">
-                                <span class="sidebar-menu-text">Trello</span>
-                            </a>
-                        </li>
-                    </ul>
+                    {% for chat_active in actives %}
+                        <ul class="sidebar-submenu collapse" id="apps_menu">
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="/client?chat={{ chat_active.chat_id }}">
+                                    <span class="sidebar-menu-text">{{ chat_active.sender }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% endfor %}
                 </li>
 
                 <li class="sidebar-menu-item">
@@ -53,28 +52,15 @@
                         <span class="sidebar-menu-text">Finalizados</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse" id="pages_menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="companies.html">
-                                <span class="sidebar-menu-text">Companies</span>
-                            </a>
-                        </li>                                      
-                    </ul>
-                </li>
-
-                <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" data-toggle="collapse" href="#layouts_menu">
-                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">local_offer</i>
-                        <span class="sidebar-menu-text">Categorizados</span>
-                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                    </a>
-                    <ul class="sidebar-submenu collapse" id="layouts_menu">
-                        <li class="sidebar-menu-item active">
-                            <a class="sidebar-menu-button" href="index.html">
-                                <span class="sidebar-menu-text">Default</span>
-                            </a>
-                        </li>
-                    </ul>
+                    {% for closeds in closed %}
+                        <ul class="sidebar-submenu collapse" id="pages_menu">
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="companies.html">
+                                    <span class="sidebar-menu-text">{{ closeds.sender }}</span>
+                                </a>
+                            </li>                                      
+                        </ul>
+                    {% endfor %}
                 </li>
             </ul>
             <div class="sidebar-block p-0">

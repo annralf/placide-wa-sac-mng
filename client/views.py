@@ -32,10 +32,31 @@ class Admin(View):
     template = 'user/admin.html'
     def get(self, request):
         chatList = Manager.getChats('all')
-        print(chatList)
-        response = 'Jose Lopez'#Cli.getSetup("Jose Lopez")
-        return render(request,self.template, {'agent_name': response, 'chats': chatList})
+        response = 'Jose Lopez'
+        actives = []
+        queue = []
+        closed = []        
+        for chat in chatList:
+            if chat['type_chat'] == 'queue':
+                queue.append(chat)
+            else:
+                if  chat['label'] != 'cerrado':
+                    actives.append(chat)
+            if chat['label'] == 'cerrado':
+                closed.append(chat)
+        if 'chat_id' in  request.GET:
+            chat_id = request.GET['chat_id']
+        else:
+            chat_id = actives[0]['chat_id']
+        messages = self.chat(chat_id)
+        print(messages)
+        return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages})
 
+    def chat(self, chat_id):      
+        #Details from Chat
+        mng = Manager()
+        messages = mng.getChatDetail(chat_id)
+        return messages
 
 class Edit(View):
     template = 'user/edit.html'
