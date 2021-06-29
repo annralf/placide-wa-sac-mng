@@ -62,7 +62,6 @@ def messages(request,id = None):
     if request.method == 'GET':
         if id is not None:
             r = Queue.objects.filter(message = {'ws_id': id})
-            print(r)
             return std_response(pld=r.values())
 
         elif 'cached' in request.query_params:

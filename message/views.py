@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse, HttpResponseRedirect
+
+from .manager import Manager
+
 
 # Models
 # from .models import Queue, Agent#, Chat
@@ -24,3 +27,17 @@ class Message(View):
 
         if type == 'labeled':
             return render(request, self.labeledTmp) 
+
+    def send(request):
+        if request.method == 'POST':
+            message_handler = Manager()
+            contex = {
+                'messages':[
+                    {
+                        'body': request.POST['message_body'],
+                        'phone': request.POST['phone_number'],
+                    }
+                ]
+            }
+            message_handler.sendMessage(contex)
+        return HttpResponseRedirect("/client/")

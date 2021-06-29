@@ -32,7 +32,7 @@ class Admin(View):
     template = 'user/admin.html'
     def get(self, request):
         chatList = Manager.getChats('all')
-        response = 'Jose Lopez'
+        response = 'Manager Agent'
         actives = []
         queue = []
         closed = []        
@@ -49,7 +49,6 @@ class Admin(View):
         else:
             chat_id = actives[0]['chat_id']
         messages = self.chat(chat_id)
-        print(messages)
         return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages})
 
     def chat(self, chat_id):      
@@ -76,8 +75,6 @@ class New(View):
         else:
             print(form.errors)
         return render(request,self.template, {'form': form})
-
-
 
 class List(View):
     template = 'user/list.html'
