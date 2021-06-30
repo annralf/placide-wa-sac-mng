@@ -62,7 +62,6 @@ def messages(request,id = None):
     if request.method == 'GET':
         if id is not None:
             r = Queue.objects.filter(message = {'ws_id': id})
-            print(r)
             return std_response(pld=r.values())
 
         elif 'cached' in request.query_params:
@@ -151,7 +150,7 @@ def chat_info(request,status):
         chat_status = status
         if status == "all":
             chat = Chat.objects()
-        else:    
+        else:
             chat = Chat.objects(type_chat=chat_status)
         return std_response(pld=json.loads(chat.to_json()))
 
