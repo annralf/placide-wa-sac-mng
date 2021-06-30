@@ -42,11 +42,20 @@ class Manager:
                 'is_client' : chat['fromMe'],
                 'time' : datetime.fromtimestamp(chat['time']),
                 'sender' : chat['senderName'],
+                'phone_number' :  chat['chatName'],
                 'is_response' : chat_is_read[0],
                 'message' : chat['body'],
+                'chat_id' :chat_id
             }
             list.append(message)
         return list
+
+    def sendMessage(self, messageDetail):
+        #Message Sender
+        url = "http://localhost:8000/messages/"
+        response = requests.post(url, params = messageDetail)
+        print(response)
+        return True
 
 
 

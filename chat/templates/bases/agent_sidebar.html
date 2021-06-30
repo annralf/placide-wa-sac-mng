@@ -10,7 +10,7 @@
                     </span>
                 </a>
             </div>
-            <div class="sidebar-heading sidebar-m-t">Mensajes</div>
+            <div class="sidebar-heading sidebar-m-t">Chats</div>
             <ul class="sidebar-menu">
                 <li class="sidebar-menu-item active open">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#dashboards_menu">
@@ -21,8 +21,12 @@
                     {% for queues in queue %}
                             <ul class="sidebar-submenu collapse show " id="dashboards_menu">
                                 <li class="sidebar-menu-item active">
-                                    <a class="sidebar-menu-button" href="index.html">
-                                        <span class="sidebar-menu-text">{{ queues.sender }}</span>
+                                    <a class="sidebar-menu-button" href="/client?chat_id={{ queues.chat_id }}">
+                                        {% if  messages.0.chat_id == queues.chat_id %}
+                                            <span class="sidebar-menu-text" style="color: #067111;                             text-decoration: underline;">{{ queues.sender }}</span>
+                                        {% else %}
+                                            <span class="sidebar-menu-text">{{ queues.sender }}</span>
+                                        {% endif %}
                                     </a>
                                 </li>                                        
                             </ul>
@@ -38,8 +42,12 @@
                     {% for chat_active in actives %}
                         <ul class="sidebar-submenu collapse" id="apps_menu">
                             <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="/client?chat={{ chat_active.chat_id }}">
-                                    <span class="sidebar-menu-text">{{ chat_active.sender }}</span>
+                                <a class="sidebar-menu-button" href="/client?chat_id={{ chat_active.chat_id }}">
+                                    {% if  messages.0.chat_id == chat_active.chat_id %}
+                                    <span class="sidebar-menu-text" style="color: #067111;                             text-decoration: underline;">{{ chat_active.sender }}</span>
+                                {% else %}
+                                    <span class="sidebar-menu-text">{{ queues.sender }}</span>
+                                {% endif %}
                                 </a>
                             </li>
                         </ul>
