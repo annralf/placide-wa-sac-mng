@@ -22,5 +22,5 @@ def userStatus( chatId = None, phone = None ):
 # Get instance qr code
 def getQrcode():
 
-    r = requests.post(f'{API_URL}/qr_code', params = {'token': TOKEN} )
+    r = requests.get(f'{API_URL}/qr_code', params = {'token': TOKEN} )
     return r
