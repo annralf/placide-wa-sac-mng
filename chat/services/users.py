@@ -1,4 +1,6 @@
 import requests
+import base64
+from io import BytesIO
 from chat._constants import *
 
 ### Users functions ###
@@ -23,4 +25,6 @@ def userStatus( chatId = None, phone = None ):
 def getQrcode():
 
     r = requests.get(f'{API_URL}/qr_code', params = {'token': TOKEN} )
-    return r
+    qr = BytesIO(r.content)
+    data = base64.encodebytes(qr.getvalue()).decode('utf-8')
+    return data
