@@ -12,6 +12,7 @@ urlpatterns = [
     re_path(r'^$', views.Index.as_view(),name='index'),
     # re_path(r'^message/?', message.Message.as_view(),name='message'),
     re_path(r'^messages/?(?P<id>[\w@\.]+)?', views.messages, name='messages'),
+    re_path(r'^qr/?', views.get_qr, name='qr'),
     re_path(r'^agents/?(?P<name>[\w]+)?', views.agents, name='agents'),
     re_path(r'^chats/?', views.dialogs, name='dialogs'),
     re_path(r'^label/?', views.update_label, name='label'),

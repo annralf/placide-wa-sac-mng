@@ -10,6 +10,7 @@ from rest_framework.response import Response
 # Services
 from .services.messages import getMessages, sendMessage
 from .services.dialogs import getDialogs
+from .services.users import getQrcode
 
 # Models
 from .models import Message, Chat, Queue
@@ -162,3 +163,8 @@ def update_label(request):
         chat = Chat.objects(chat_id=chat_id)
         chat.update(label=label)
         return std_response()
+
+@api_view(['GET'])
+def get_qr(request):
+    qr = getQrcode()
+    return std_response(pld=qr)
