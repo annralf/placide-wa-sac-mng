@@ -3,11 +3,14 @@ from django.views import View
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
+from django.views.generic.base import TemplateView
 
-from  .models import Cli as Cli
+from  .models import Client as Cli
 from .form import New as NewForm
+from message.form import Message as MessageForm
 
 from message.manager import Manager
+from .manager import Manager as ClientMng
 
 class Client(View):
     template = 'user/login.html'
@@ -30,12 +33,13 @@ class Client(View):
 
 class Admin(View):
     template = 'user/admin.html'
-    def get(self, request):
+    def get(self, request, chat_id = None):
         chatList = Manager.getChats('all')
         response = 'Manager Agent'
         actives = []
         queue = []
         closed = []        
+        print('admin')
         for chat in chatList:
             if chat['type_chat'] == 'queue':
                 queue.append(chat)
@@ -49,7 +53,8 @@ class Admin(View):
         else:
             chat_id = actives[0]['chat_id']
         messages = self.chat(chat_id)
-        return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages})
+        form = MessageForm 
+        return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form})
 
     def chat(self, chat_id):      
         #Details from Chat
@@ -61,6 +66,15 @@ class Edit(View):
     template = 'user/edit.html'
     def get(self, request):
         return render(request,self.template)
+
+class Show(View):
+    template = 'client/show.html'
+    def get(self, request, id):
+        client = Cli.objects.get(id=id)
+        manager = ClientMng()
+        image = manager.getQr()
+        return render(request, self.template, {'client': client, 'image': image})
+
 
 class New(View):
     template = 'client/new.html'

@@ -21,6 +21,7 @@ class Client(models.Model):
     instance = models.CharField(max_length=250, blank=True, null=True)
     token = models.CharField(max_length=250, blank=True, null=True)
     api_setup = models.IntegerField(blank=True, null=True)
+    user_limit = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return "%s" % (self.name)
 

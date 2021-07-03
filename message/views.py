@@ -31,13 +31,6 @@ class Message(View):
     def send(request):
         if request.method == 'POST':
             message_handler = Manager()
-            contex = {
-                'messages':[
-                    {
-                        'body': request.POST['message_body'],
-                        'phone': request.POST['phone_number'],
-                    }
-                ]
-            }
-            message_handler.sendMessage(contex)
-        return HttpResponseRedirect("/client/")
+            chatId = request.POST['chat_id']
+            message_handler.sendMessage(request.POST['message_body'], chatId)
+        return HttpResponseRedirect("/client/?chat_id="+chatId)

@@ -1,0 +1,59 @@
+{% load static %}
+{% load widget_tweaks %}
+<div class="mdk-drawer-layout__content page">
+    <div class="container-fluid  page__heading-container">
+        <div class="page__heading">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+                </ol>
+            </nav>
+            <h1 class="m-0">Editar cuenta</h1>
+        </div>
+    </div>
+    <div class="container-fluid page__container" style="display: flex;">
+        <div class="col-lg-4" >
+            <img src="data:image/png;base64,{{ image }}"/>
+        </div>
+        <div class="col-lg-8 card-form__body card-body">
+            <form method="POST" action="/client/new">
+                {% csrf_token %}  
+                <div class="form-group">
+                    <label for="name">Identificador</label>
+                    <input type="text" name="name" id="name"  class="form-control" value="{{ client.name }}"  readonly/>  
+                </div>
+                <div class="form-group">
+                    <label for="instance">Instancia WhatsApp (ID)</label>
+                    <input type="text" name="instance" id="instance"  class="form-control" value="{{ client.instance }}"  readonly/>  
+                </div>
+                <div class="form-group">
+                    <label for="instance">Token WhatsApp </label>
+                    <input type="text" name="token" id="token"  class="form-control" value="{{ client.token }}"  readonly/>  
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="status">Estatus</label><br>
+                            <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input checked="" type="checkbox" id="status" class="custom-control-input" value="1">
+                                <label class="custom-control-label" for="status">Activo</label>
+                            </div>
+                            <label for="status" class="mb-0">Activo</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="api_setup">Setup API</label><br>
+                            <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input checked="" type="checkbox" id="api_setup" class="custom-control-input" value="1">
+                                <label class="custom-control-label" for="api_setup">Activo</label>
+                            </div>
+                            <label for="api_setup" class="mb-0">Activo</label>
+                        </div>
+                    </div>
+                </div>                
+            </form>
+        </div>
+    </div>
+</div>

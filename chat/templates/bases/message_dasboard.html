@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <div class="mdk-drawer-layout__content page">
     <div class="container-fluid page__heading-container">
         <div class="page__heading d-flex align-items-center"></div>
@@ -7,7 +8,7 @@
         <div class="card">
             <div class="row h-90 m-0">
                 <div class="col-lg-8 py-3 d-flex flex-column h-50">
-                    <div class="card stories-card">
+                    <!-- <div class="card stories-card">
                         <div class="stories-card__content d-flex align-items-center flex-wrap">
                             <div class="search-form form-control-rounded search-form--light">
                                 <input type="text" class="form-control" placeholder="Buscar en mensage"
@@ -16,13 +17,13 @@
                                         class="material-icons">search</i></button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Start Message list section -->
                     <div class="flex p-3 d-flex flex-column">
                         <div data-simplebar style="overflow-y: scroll; overflow-x: hidden; height: 40vh;">
                             {% for msg in messages %}     
-                                {% if not msg.is_client  %}                
+                                {% if msg.is_client  %}                
                                     <div class="media border-bottom py-3">
                                         <a href="#" class="avatar avatar-sm mr-3">
                                             <img src="{% static 'images/1.png' %}"
@@ -59,40 +60,38 @@
                         </div>
                     </div>
 
-                    <div class="input-group input-group-merge">
+                    <div class="input-group">
                         <form method="POST" action="{% url 'send_message' %}" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input type="hidden" id="chat_id" name="chat_id" value="{{ messages.0.chat_id }}" ><input>
-                            <input type="hidden" id="phone_number" name="phone_number" value="{{ messages.0.phone_number }}" ><input>
-                            <textarea class="form-control form-control-appended" required=""
-                            placeholder="Responder" rows=3 id="message_body" name="message_body"></textarea>
-                            <div class="input-group-append">
-                                <div class="input-group-text pr-2">
-                                    <button class="btn btn-flush" type="submit"><i
-                                            class="material-icons" style="font-size: 24px; color: #4a6b4d;">send</i></button>
-                                </div>
-                                <div class="input-group-text pr-2">
-                                    <button class="btn btn-flush" type="button"><i
-                                            class="material-icons" style="font-size: 24px; color: #4a6b4d;">tag_faces</i></button>
-                                </div>
-                                <div class="input-group-text pl-0">
-                                    <div class="custom-file custom-file-naked d-flex" style="width: 24px">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" style="color: inherit;" for="customFile">
-                                            <i class="material-icons" style="font-size: 24px; color: #4a6b4d;">attach_file</i>
-                                        </label>
+                            {% render_field form.chat_id value="{{ messages.0.chat_id }}" %}
+                            <div class="row" style="flex-wrap: inherit;">
+                                <textarea class="form-control form-control-appended" required="" placeholder="Responder" rows=3 id="message_body" name="message_body" style=" width: 33vw; margin-left: 32px;"></textarea>
+                                <div class="input-group-append">
+                                    <div class="input-group-text" style="border: none !important;">
+                                        <button class="btn btn-flush" type="submit"><i class="material-icons" style="font-size: 24px; color: #4a6b4d;">send</i></button>
                                     </div>
-                                </div>
-                                <div class="input-group-text pr-2">
-                                    <div class="dropdown ml-auto">
-                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
-                                            aria-expanded="false"><i
-                                                class="material-icons customer-message-icons" style="color: #4a6b4d;">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
-                                            <a href="javascript:void(0)" class="dropdown-item">Respuesta automática</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
-                                            <a href="javascript:void(0)" class="dropdown-item">Cerrar conversación</a>
+                                    <div class="input-group-text"  style="border: none !important;">
+                                        <button class="btn btn-flush" type="button"><i class="material-icons" style="font-size: 24px; color: #4a6b4d;">tag_faces</i></button>
+                                    </div>
+                                    <div class="input-group-text pl-0"  style="border: none !important;">
+                                        <div class="custom-file custom-file-naked d-flex" style="width: 24px">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" style="color: inherit;" for="customFile">
+                                                <i class="material-icons" style="font-size: 24px; color: #4a6b4d;">attach_file</i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="input-group-text"  style="border: none !important;">
+                                        <div class="dropdown ml-auto">
+                                            <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                                aria-expanded="false"><i
+                                                    class="material-icons customer-message-icons" style="color: #4a6b4d;">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                                <a href="javascript:void(0)" class="dropdown-item">Respuesta automática</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
+                                                <a href="javascript:void(0)" class="dropdown-item">Cerrar conversación</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -50,11 +50,20 @@ class Manager:
             list.append(message)
         return list
 
-    def sendMessage(self, messageDetail):
+    def sendMessage(self, body, phone):
         #Message Sender
         url = "http://localhost:8000/messages/"
-        response = requests.post(url, params = messageDetail)
-        print(response)
+        payload = {"messages": [
+        {
+            "body":body,
+            "chatId": phone
+        }
+        ]}
+        headers = {"Content-Type": "application/json"}
+
+        response = requests.request("POST", url, json=payload, headers=headers)
+
+        print(response.text)
         return True
 
 
