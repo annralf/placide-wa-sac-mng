@@ -1,0 +1,48 @@
+{% load static %}
+{% load widget_tweaks %}
+<div class="mdk-drawer-layout__content page">
+    <div class="container-fluid  page__heading-container">
+        <div class="page__heading">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Etiqueta</li>
+                </ol>
+            </nav>
+            <h1 class="m-0">{{ label.name }}</h1>
+        </div>
+    </div>
+    <div class="container-fluid page__container">
+        <div class="card card-form">
+            <form method="POST" action="/message/label/edit/{{ label.id }}">
+                {% csrf_token %}  
+                <div class="row no-gutters">
+                    <div class="col-lg-4 card-body">
+                        <p><strong class="headings-color">Etiqueta</strong></p>
+                    </div>
+                    <div class="col-lg-8 card-form__body card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="fname">Rol</label>
+                                    <input type="text" name="name" id="name"  class="form-control" required maxlength="20" value="{{ label.name }}"/>  
+                                    <input type="hidden" name="client_id" id="client_id"  value="{{ label.client_id }}"/>                                      
+                                </div>
+                            </div>
+                           
+                        </div>                        
+                        <div class="form-group">
+                            <label for="subscribe">Estatus</label><br>
+                            <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input checked="" type="checkbox" id="status_label" class="custom-control-input" value="1">
+                                <label class="custom-control-label" for="subscribe">Activo</label>
+                            </div>
+                            <label for="subscribe" class="mb-0">Activo</label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>            
+    </div>
+</div>

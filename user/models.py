@@ -4,9 +4,10 @@ from client.models import Client, ActivitiesPerformance
 
 class UsersRole(models.Model):
     name = models.CharField(max_length=45, blank=True, null=True)
-    status = models.IntegerField(blank=True, null=True)
-    created_at = models.CharField(max_length=45, blank=True, null=True)
-    upated_at = models.DateField(blank=True, null=True)
+    status_rol = models.IntegerField( db_column='status', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    upated_at = models.DateTimeField(auto_now_add=True)
+    client_id =  models.IntegerField(blank=True, null=False)
     def __str__(self):
         return "%s" % (self.name)
 
@@ -20,8 +21,8 @@ class Users(models.Model):
     lastname = models.CharField(max_length=45, blank=True, null=True)
     username = models.CharField(max_length=45, blank=True, null=True)
     password = models.CharField(max_length=45, blank=True, null=False)
-    role = models.ForeignKey( UsersRole,models.DO_NOTHING, db_column='role_id', blank=True, null=True )
-    status = models.IntegerField(blank=True, null=False)
+    role = models.ForeignKey(UsersRole,models.SET_NULL, db_column='role_id', blank=True, null=True )
+    status_user = models.IntegerField( db_column='status', blank=True, null=True)
     created_at =models.DateTimeField(default=timezone.now)
     client_id =  models.IntegerField(blank=True, null=False)
 
