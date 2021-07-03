@@ -6,10 +6,10 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+                    <li class="breadcrumb-item active" aria-current="page">Ver cliente</li>
                 </ol>
             </nav>
-            <h1 class="m-0">Editar perfil</h1>
+            <h1 class="m-0">{{ client.name }}</h1>
         </div>
     </div>
     <div class="container-fluid page__container" style="display: flex;">
@@ -17,19 +17,19 @@
             <img src="data:image/png;base64,{{ image }}"/>
         </div>
         <div class="col-lg-8 card-form__body card-body">
-            <form method="POST" action="/client/edit/{{ client.id }}">
+            <form method="POST" action="/client/new">
                 {% csrf_token %}  
                 <div class="form-group">
                     <label for="name">Identificador</label>
-                    <input type="text" name="name" id="name"  class="form-control" value="{{ client.name }}" />  
+                    <input type="text" name="name" id="name"  class="form-control" value="{{ client.name }}"  readonly/>  
                 </div>
                 <div class="form-group">
                     <label for="instance">Instancia WhatsApp (ID)</label>
-                    <input type="text" name="instance" id="instance"  class="form-control" value="{{ client.instance }}" />  
+                    <input type="text" name="instance" id="instance"  class="form-control" value="{{ client.instance }}"  readonly/>  
                 </div>
                 <div class="form-group">
                     <label for="instance">Token WhatsApp </label>
-                    <input type="text" name="token" id="token"  class="form-control" value="{{ client.token }}" />  
+                    <input type="text" name="token" id="token"  class="form-control" value="{{ client.token }}"  readonly/>  
                 </div>
                 <div class="row">
                     <div class="col">
@@ -52,10 +52,7 @@
                             <label for="api_setup" class="mb-0">Activo</label>
                         </div>
                     </div>
-                </div>      
-                <div class="text-right mb-5">
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                </div>          
+                </div>                
             </form>
         </div>
     </div>

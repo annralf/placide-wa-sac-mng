@@ -94,7 +94,7 @@ def messages(request,id = None):
             for message in request.data['messages']:
                 aux = sendMessage(**message)
                 r.append(aux.json())
-            return std_response(msg='All messages sent',pld=r)
+        return std_response(msg='All messages sent',pld=r)
 
 @api_view(['GET','POST'])
 def dialogs(request):

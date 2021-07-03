@@ -1,0 +1,12 @@
+{% extends "../bases/main.html"%}
+{% block content %}
+<div class="mdk-header-layout js-mdk-header-layout">
+    {% include "../bases/header.html" %}
+    <div class="mdk-header-layout__content">
+        <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+            {% include "../bases/rol_list.html" %}
+            {% include "../bases/admin_sidebar.html" %}       
+        </div>
+    </div>
+</div>
+{% endblock %}

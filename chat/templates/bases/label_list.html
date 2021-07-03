@@ -5,10 +5,10 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">agentes</li>
+                    <li class="breadcrumb-item active" aria-current="page">Etiquetas</li>
                 </ol>
             </nav>
-            <h1 class="m-0">Agentes</h1>
+            <h1 class="m-0">Etiquetas</h1>
         </div>
     </div>
     <div class="container-fluid page__container" style="overflow-y: auto; height: 66vh;">
@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="d-flex mb-3">
                     <div class="form-inline">
-                        <a href="/user/new" class="btn btn-success">Agregar Usuario</a>
+                        <a href="/message/label/new" class="btn btn-success">Nueva Etiqueta</a>
                     </div>
                     <div class="form-inline">
                         <div class="search-form search-form--light">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                {% for agent in agents %}
+                {% for label in labels %}
                     <div class="stories-cards mb-4">
                         <div class="card user_list">
                             <div class="d-flex align-items-center flex-wrap">
@@ -42,16 +42,16 @@
                                     <a href="#" class="d-flex align-items-center text-muted"></a>
                                 </div>
                                 <div class="stories-card__title flex">
-                                    <h5 class="card-title m-0"><a href="/user/edit/{{ agent.id }}" class="text-body">{{ agent.name }} {{ agent.lastname }}</a></h5>
-                                    <small class="text-muted"><strong>{{ agent.status }}</strong></small>
+                                    <h5 class="card-title m-0"><a href="/message/label/edit/{{ label.id }}" class="text-body">{{ label.name }}</a></h5>
+                                    <small class="text-muted"><strong>{{ label.status }}</strong></small>
                                 </div>
                                 <div class="ml-auto d-flex align-items-center">
                                     <div class="avatar-group mr-3">
                                         <div class="dropdown ml-auto">
                                             <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right" style="display: none;">
-                                                <a href="/user/edit/{{ agent.id }}" class="dropdown-item">Editar info</a>
-                                                <a href="/user/delete/{{ agent.id }}" class="dropdown-item">Eliminar</a>
+                                                <a href="/message/label/edit/{{ label.id }}" class="dropdown-item">Editar info</a>
+                                                <a href="/message/label/delete/{{ label.id }}" class="dropdown-item">Eliminar</a>
                                             </div>
                                         </div>
                                     </div>
