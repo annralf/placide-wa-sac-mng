@@ -78,3 +78,8 @@ class Label(View):
         label = Labels.objects.get(id=id)
         label.delete()
         return redirect("/message/label")
+
+    def add(request, label, chat_id):
+        chat_id = request.GET['chat_id']
+        label = request.GET['label']
+        return redirect('/client/')

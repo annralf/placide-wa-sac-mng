@@ -1,9 +1,14 @@
 import requests 
 from datetime import datetime
-class Manager:
+import os
 
+class Connection:
+    urlBase = os.environ.get("HOST_DEV")
+
+class Manager:
     def getChats(self, type='all'):
-        url = "http://localhost:8000/filter/"+type
+        conn = Connection.urlBase
+        url = conn+"/filter/"+type
         response = requests.get(url)
         chatList = response.json()
         list = []
@@ -31,7 +36,8 @@ class Manager:
 
     def getChatDetail(self, chat_id):
         #Get chats details
-        url = "http://localhost:8000/messages?chatId="+chat_id
+        conn = Connection.urlBase
+        url = conn+"/messages?chatId="+chat_id
         response = requests.get(url)
         chats = response.json()
         list = []
@@ -52,7 +58,8 @@ class Manager:
 
     def sendMessage(self, body, phone):
         #Message Sender
-        url = "http://localhost:8000/messages/"
+        conn = Connection.urlBase
+        url = conn+"/messages/"
         payload = {"messages": [
         {
             "body":body,
@@ -60,13 +67,5 @@ class Manager:
         }
         ]}
         headers = {"Content-Type": "application/json"}
-
         response = requests.request("POST", url, json=payload, headers=headers)
-
-        print(response.text)
         return True
-
-
-
-# test = Manager()
-# print(test.getChats('all'))
