@@ -1,10 +1,14 @@
 import requests 
 from datetime import datetime
-from chat ._constants import *
+import os
+
+class Connection:
+    urlBase = os.environ.get("HOST_DEV")
 
 class Manager:
     def getQr(self):
-        url = BASE+'qr'
+        conn = Connection.urlBase
+        url = conn+'/qr'
         response = requests.get(url)
         code = response.json()
         if(code['status'] == 'Ok'):
