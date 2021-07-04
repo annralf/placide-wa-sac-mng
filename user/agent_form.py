@@ -3,6 +3,12 @@ from django.forms import fields, models
 import importlib
 from .models import Users, UsersRole
 
+class AuthForm(forms.ModelForm):
+    class Meta:
+        model = Users 
+        fields=['username', 'password', 'status_user', 'name', 'lastname',  'client_id','role']      
+        widgets = {'status_user': forms.HiddenInput()}
+
 class AgentForm(forms.ModelForm):
     class Meta:
         model = Users 

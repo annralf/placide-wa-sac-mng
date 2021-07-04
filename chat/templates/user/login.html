@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,46 +24,23 @@
     <!-- Font Awesome FREE Icons -->
     <link type="text/css" href="/static/css/vendor-fontawesome-free.css" rel="stylesheet">
     <link type="text/css" href="/static/css/vendor-fontawesome-free.rtl.css" rel="stylesheet">
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133433427-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-133433427-1');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=327167911228268&ev=PageView&noscript=1" /></noscript>
-    <!-- End Facebook Pixel Code -->
-
-
-
-
-
-
 </head>
-
 <body class="layout-login">
-
-
     <div class="layout-login__overlay"></div>
     <div class="layout-login__form login-background" data-simplebar>
         <div class="d-flex justify-content-center mt-2 mb-5 navbar-light">
             <a href="index.html" class="navbar-brand" style="min-width: 0">
-                <img class="navbar-brand-icon" src="static/images/Manager.svg" width="70" alt="Stack">
+                <img class="navbar-brand-icon" src="/static/images/Manager.svg" width="70" alt="Stack">
             </a>
         </div>
-
         <h4 class="m-0" style="color: white;">WhatsApp Manager</h4>
         <p class="mb-5"  style="color: white;">Iniciar sesión </p>
-
-        <form action="index.html" novalidate>
+        <form action="/user/" method="POST">
+            {% csrf_token %}  
             <div class="form-group">
                 <label class="text-label" for="email_2">usuario:</label>
                 <div class="input-group input-group-merge">
-                    <input id="email_2" type="email" required="" class="form-control form-control-prepended" placeholder="john@doe.com">
+                    <input id="username" name="username" type="text" required class="form-control form-control-prepended" placeholder="Usuario">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="far fa-user"></span>
@@ -75,7 +51,7 @@
             <div class="form-group">
                 <label class="text-label" for="password_2">Contraseña:</label>
                 <div class="input-group input-group-merge">
-                    <input id="password_2" type="password" required="" class="form-control form-control-prepended" placeholder="Enter your password">
+                    <input id="password" name="password" type="password" required="" class="form-control form-control-prepended" placeholder="Enter your password">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="fa fa-key"></span>
@@ -84,6 +60,7 @@
                 </div>
             </div>
             <div class="form-group text-center">
+                <input id="status_user" name="status_user" type="hidden" value="1">
                 <button class="btn mb-5" type="submit">Ingresar</button><br>
             </div>
         </form>
