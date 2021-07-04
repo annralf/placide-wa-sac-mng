@@ -11,13 +11,14 @@ from .models import Labels
 # from .models import Queue, Agent#, Chat
 
 class Message(View):
-
     def send(request):
+        print('here')
         if request.method == 'POST':
             message_handler = Manager()
             chatId = request.POST['chat_id']
+            print(chatId)
             message_handler.sendMessage(request.POST['message_body'], chatId)
-        return redirect("/client/?chat_id="+chatId)
+        return HttpResponseRedirect("/client?chat_id="+chatId)
 
     def setAgent(request, chat_id, status, agent_id):
         mng = Manager()

@@ -66,8 +66,7 @@ class Admin(View):
                 chat_id = actives[0]['chat_id']
         messages = self.chat(chat_id)
        
-        form = MessageForm 
-        #Get users actives for re asing message
+        form = MessageForm         
         agents = Users.objects.filter(client_id= client_id).filter(status_user = 1)
         #Get setting labels
         labels = Labels.objects.filter(client_id=client_id)

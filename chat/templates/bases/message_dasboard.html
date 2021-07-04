@@ -50,9 +50,9 @@
                     </div>
 
                     <div class="input-group">
-                        <form method="POST" action="{% url 'send_message' %}" enctype="multipart/form-data">
+                        <form method="POST" action="/message/send" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {% render_field form.chat_id value="{{ messages.0.chat_id }}" %}
+                            <input type="hidden" value="{{ messages.0.chat_id }}" name="chat_id" id="chat_id"/>
                             <div class="row" style="flex-wrap: inherit;">
                                 <textarea class="form-control form-control-appended" required="" placeholder="Responder"
                                     rows=3 id="message_body" name="message_body"
