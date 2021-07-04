@@ -114,7 +114,7 @@ def dialogs(request):
 
         elif not 'agent_id' in request.data or not 'chat_id' in request.data:
             return std_response(status='Error', msg='Missing argument')
-        
+
         else:
             #set agent to a chat
             chat_id = request.data['chat_id']
