@@ -5,11 +5,13 @@ from django.contrib import admin
 from django.conf.urls import include, url
 from . import views
 
+from user.views import Login
+
 urlpatterns = [
     url('user/', include('user.urls')),
     url('message/', include('message.urls')),
     url('client/', include('client.urls')),
-    re_path(r'^$', views.Index.as_view(),name='index'),
+    re_path(r'^$', Login.as_view(),name='index'),
     re_path(r'^messages/?(?P<id>[\w@\.]+)?', views.messages, name='messages'),
     re_path(r'^sendFile/?', views.uploadFile, name='file'),
     re_path(r'^qr/?', views.get_qr, name='qr'),

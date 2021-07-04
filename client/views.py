@@ -1,3 +1,4 @@
+# from app import client
 from django.shortcuts import redirect, render
 from django.views import View
 
@@ -36,7 +37,7 @@ class Client(View):
 class Admin(View):
     template = 'user/admin.html'
     def get(self, request, chat_id = None):
-        client_id = 1
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
         chatList = Manager.getChats('all')
         response = 'Manager Agent'
         actives = []
@@ -86,7 +87,7 @@ class Admin(View):
             form = NewForm(request.POST, instance= client)
             if form.is_valid():
                 form.save()
-                return redirect("/client/list")
+                return redirect('admin')
             else:
                 print(form.errors)
         else:
@@ -94,6 +95,14 @@ class Admin(View):
             manager = ClientMng()
             image = manager.getQr()
             return render(request,template,{'client':client, 'image': image})
+    
+    def delete(request, id):
+        try:
+            client = Cli.objects.get(id=id)
+            client.delete()
+        except:
+            print("An exception occurred")        
+        return redirect('admin')
 
 class Show(View):
     template = 'client/show.html'
@@ -113,7 +122,7 @@ class New(View):
         form = NewForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/user/list")
+            return redirect('admin')
         else:
             print(form.errors)
         return render(request,self.template, {'form': form})

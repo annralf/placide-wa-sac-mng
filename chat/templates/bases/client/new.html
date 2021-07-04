@@ -28,12 +28,16 @@
                     <label for="instance">Token WhatsApp </label>
                     {% render_field form.token type="text" placeholder="Token WhatsApp (ID)" class="form-control" style="width: 750px;" %}
                 </div>
+                <div class="form-group">
+                    <label for="instance">Cantidad de usuarios </label>
+                    {% render_field form.user_limit type="text" placeholder="cantidad de usuarios" class="form-control" style="width: 750px;" %}
+                </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for="status">Estatus</label><br>
                             <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
-                                <input checked="" type="checkbox" id="status" class="custom-control-input" value="1">
+                                <input checked="" type="checkbox" id="status" name="status" class="custom-control-input" value="1">
                                 <label class="custom-control-label" for="status">Activo</label>
                             </div>
                             <label for="status" class="mb-0">Activo</label>
@@ -43,7 +47,7 @@
                         <div class="form-group">
                             <label for="api_setup">Setup API</label><br>
                             <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
-                                <input checked="" type="checkbox" id="api_setup" class="custom-control-input" value="1">
+                                <input checked="" type="checkbox" id="api_setup" name="api_setup" class="custom-control-input" value="1">
                                 <label class="custom-control-label" for="api_setup">Activo</label>
                             </div>
                             <label for="api_setup" class="mb-0">Activo</label>

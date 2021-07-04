@@ -3,12 +3,28 @@
     <div class="mdk-drawer__content">
         <div class="sidebar sidebar-light sidebar-left simplebar" data-simplebar>
             <div class="d-flex align-items-center sidebar-p-a border-bottom sidebar-account">
-                <a href="profile.html" class="flex d-flex align-items-center text-underline-0 text-body">
-                    <span class="flex d-flex flex-column">
-                        <strong>{{agent_name}}</strong>
-                        <small class="text-muted text-uppercase">Account Manager</small>
-                    </span>
-                </a>
+                {% if request.session.rol == 3 %}
+                    <a href="{% url 'admin' %}" class="flex d-flex align-items-center text-underline-0 text-body">
+                        <span class="flex d-flex flex-column">
+                            <strong>{{ request.session.full_name }}</strong>
+                            <small class="text-muted text-uppercase">Manager</small>
+                        </span>
+                    </a>    
+                {% elif request.session.rol == 4 %}
+                    <a href="{% url 'user_admin' %}" class="flex d-flex align-items-center text-underline-0 text-body">
+                        <span class="flex d-flex flex-column">
+                            <strong>{{ request.session.full_name }}</strong>
+                            <small class="text-muted text-uppercase">Manager</small>
+                        </span>
+                    </a>    
+                {% else %}
+                    <a href="#" class="flex d-flex align-items-center text-underline-0 text-body">
+                        <span class="flex d-flex flex-column">
+                            <strong>{{ request.session.full_name }}</strong>
+                            <small class="text-muted text-uppercase">Agente</small>
+                        </span>
+                    </a>       
+                {% endif %}
             </div>
             <div class="sidebar-heading sidebar-m-t">Chats</div>
             <ul class="sidebar-menu">

@@ -8,6 +8,7 @@ from django.contrib.auth import login, authenticate
 
 from . import models as User
 from .agent_form import *
+# from app import user
 
 class Login(View):
     template = 'user/login.html'
@@ -16,17 +17,18 @@ class Login(View):
         return render(request, self.template, {'form': form})
 
     def post(self, request):
-        form = AuthForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
-        agent =  User.Users.objects.get(username=username,password=password)
-        form = AuthForm(request.POST, instance= agent)
-        if form.is_valid():
-            form.save()
-            request.session['user_id'] = form.cleaned_data.get('id')
-            request.session['full_name'] = form.cleaned_data.get('name')
-            request.session['rol'] = form.cleaned_data.get('role')
-            request.session['client_id'] = form.cleaned_data.get('client_id')
+        agent =  User.Users.objects.filter(username= username, password=password).first()                  
+        if agent:
+            agent.status = 1
+            agent.save()   
+            request.session['user_id'] = agent.id
+            request.session['username'] = agent.username
+            request.session['full_name'] = agent.name
+            request.session['rol'] = agent.role_id
+            request.session['client_id'] = agent.client_id
+            request.session['logged'] = True
             return redirect("home")
         else:
             form = AuthForm()
@@ -34,10 +36,15 @@ class Login(View):
             return render(request, self.template, {'form': form})
             
     def logout(request):
-        del request.session['user_id']
-        del request.session['full_name']
-        del request.session['rol']
-        del request.session['client_id']
+        try:
+            request.session['logged'] = False
+            del request.session['user_id'] 
+            del request.session['username']
+            del request.session['full_name']
+            del request.session['rol']
+            del request.session['client_id']
+        except:
+            pass
         return redirect("login")
         
 
@@ -55,7 +62,7 @@ class Agent(View):
             form = AgentForm(request.POST, instance= agent)
             if form.is_valid():
                 form.save()
-                return redirect("/user/list")
+                return redirect('user_admin')
             else:
                 print(form.errors)
         else:
@@ -65,38 +72,40 @@ class Agent(View):
     
     def new(request):
         newTemplate = 'user/new.html'
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
         if request.method == 'POST':
             form = AgentForm(request.POST)
             if form.is_valid():
                 form.save()
-                return redirect("/user/list")
+                return redirect('user_admin')
             else:
                 print(form.errors) 
         form = AgentForm()
+        form.fields['client_id'].initial = client_id
         return render(request, newTemplate,{'form':form})
     
     def delete(request,id):
         user = User.Users.objects.get(id=id)
         user.delete()
-        return redirect("/user/list")
+        return redirect('user_admin')
 
 class List(View):
     template = 'user/list.html'
     def get(self, request):
-        client_id = 1
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
         agents = User.Users.objects.filter(client_id=client_id)
         return render(request,self.template,{'agents': agents})
 
 class Rol(View):
     template = 'rol/list.html'
     def get(self, request):
-        client_id = 1
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
         rol = User.UsersRole.objects.filter(client_id=client_id)
         return render(request,self.template,{'roles': rol})
     
     def new(request):
         template = 'rol/new.html'
-        client_id = 1
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
         if request.method == 'POST':
             form = RolForm(request.POST)
             if form.is_valid():
