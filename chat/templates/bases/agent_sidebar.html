@@ -21,9 +21,9 @@
                     {% for queues in queue %}
                             <ul class="sidebar-submenu collapse show " id="dashboards_menu">
                                 <li class="sidebar-menu-item active">
-                                    <a class="sidebar-menu-button" href="/client?chat_id={{ queues.chat_id }}">
+                                    <a class="sidebar-menu-button" href="/client?chat_id={{queues.chat_id }}">
                                         {% if  messages.0.chat_id == queues.chat_id %}
-                                            <span class="sidebar-menu-text" style="color: #067111;                             text-decoration: underline;">{{ queues.sender }}</span>
+                                            <span class="sidebar-menu-text" style="color: #067111; text-decoration: underline;">{{ queues.sender }}</span>
                                         {% else %}
                                             <span class="sidebar-menu-text">{{ queues.sender }}</span>
                                         {% endif %}
@@ -44,16 +44,15 @@
                             <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button" href="/client?chat_id={{ chat_active.chat_id }}">
                                     {% if  messages.0.chat_id == chat_active.chat_id %}
-                                    <span class="sidebar-menu-text" style="color: #067111;                             text-decoration: underline;">{{ chat_active.sender }}</span>
-                                {% else %}
-                                    <span class="sidebar-menu-text">{{ queues.sender }}</span>
-                                {% endif %}
+                                    <span class="sidebar-menu-text" style="color: #067111; text-decoration: underline;">{{ chat_active.sender }}</span>
+                                    {% else %}
+                                        <span class="sidebar-menu-text">{{ chat_active.sender }}</span>
+                                    {% endif %}
                                 </a>
                             </li>
                         </ul>
                     {% endfor %}
                 </li>
-
                 <li class="sidebar-menu-item">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#pages_menu">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">done_all</i>
@@ -63,13 +62,34 @@
                     {% for closeds in closed %}
                         <ul class="sidebar-submenu collapse" id="pages_menu">
                             <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="companies.html">
+                                <a class="sidebar-menu-button"  href="/client?chat_id={{ closeds.chat_id }}">
                                     <span class="sidebar-menu-text">{{ closeds.sender }}</span>
                                 </a>
                             </li>                                      
                         </ul>
                     {% endfor %}
                 </li>
+                {% for label in labels %}
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" data-toggle="collapse" href="#label_{{ label.id }}">
+                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">label</i>
+                            <span class="sidebar-menu-text">{{ label.name }}</span>
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        </a>
+                        {% for tag in messages_labeled %}
+                            {% if tag.label == label.name %}
+                                <ul class="sidebar-submenu collapse" id="label_{{ label.id }}">
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" href="/client?chat_id={{ tag.chat_id }}">
+                                            <span class="sidebar-menu-text">{{ tag.sender }}</span>
+                                        </a>
+                                    </li>                                      
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+
             </ul>
             <div class="sidebar-block p-0">
                 <div class="sidebar-p-a sidebar-b-y">

@@ -11,32 +11,24 @@ from .models import Labels
 # from .models import Queue, Agent#, Chat
 
 class Message(View):
-#     activesTmp = 'message/actives.html'
-#     queueTmp = 'message/queue.html'
-#     closeTmp = 'message/close.html'
-#     labeledTmp = 'message/labeled.html'
-
-#     def get(self, request, type='active'):
-#         if type == 'active':
-#             return render(request, self.activesTmp) 
-
-#         if type == 'queue':
-#             return render(request, self.queueTmp) 
-
-#         if type == 'closed':
-#             return render(request, self.closeTmp) 
-
-#         if type == 'labeled':
-#             return render(request, self.labeledTmp) 
-#         return redirect("/client/")
-
-
     def send(request):
+        print('here')
         if request.method == 'POST':
             message_handler = Manager()
             chatId = request.POST['chat_id']
+            print(chatId)
             message_handler.sendMessage(request.POST['message_body'], chatId)
-        return redirect("/client/?chat_id="+chatId)
+        return HttpResponseRedirect("/client?chat_id="+chatId)
+
+    def setAgent(request, chat_id, status, agent_id):
+        mng = Manager()
+        response = mng.set(chat_id, status, agent_id)
+        return redirect('/client/')
+    
+    def setStatus(request, chat_id, status):
+        mng = Manager()
+        response = mng.set(chat_id, status, None)
+        return redirect('/client/chat_id='+chat_id)
 
 
 class Label(View):
@@ -79,7 +71,7 @@ class Label(View):
         label.delete()
         return redirect("/message/label")
 
-    def add(request, label, chat_id):
-        chat_id = request.GET['chat_id']
-        label = request.GET['label']
+    def add(request, chat_id, label):
+        mng = Manager()
+        mng.setLabel(chat_id, label)
         return redirect('/client/')

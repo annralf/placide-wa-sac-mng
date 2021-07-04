@@ -108,6 +108,8 @@ def dialogs(request):
 
     if request.method == 'POST':
         if 'chat_id' in request.data and 'status' in request.data:
+            chat_id = request.data['chat_id']
+            status = request.data['status']
             chat = Chat.objects(chat_id=chat_id)
             chat.update(type_chat=status)
             return std_response()
@@ -166,7 +168,6 @@ def hook(request):
 @api_view(['GET'])
 def chat_info(request,status):
     if request.method == 'GET':
-        print('lol')
         chat_status = status
         if status == "all":
             chat = Chat.objects()

@@ -21,7 +21,7 @@ class Manager:
                 sender = chat['chat_id']
             if 'agent_id' in chat:
                 assigned_to = chat['agent_id']
-            if label in chat:
+            if 'label' in chat:
                 label = chat['label']
             detail = {
                 'chat_id':chat['chat_id'],
@@ -68,4 +68,38 @@ class Manager:
         ]}
         headers = {"Content-Type": "application/json"}
         response = requests.request("POST", url, json=payload, headers=headers)
+        return True
+
+    def setLabel(self, chat_id, label):
+        conn = Connection.urlBase
+        url = conn+"/label"
+        payload = {
+            "chat_id": chat_id,
+            "label": label
+        }
+        headers = {"Content-Type": "application/json"}
+        response = requests.request("POST", url, json=payload, headers=headers)
+        return True
+
+    def set(self, chat_id, status, agent_id):
+        conn = Connection.urlBase
+        url = conn+"/chats"
+        headers = {"Content-Type": "application/json"}
+        if(agent_id != None):
+            status_data = {
+                "chat_id": chat_id,
+                "status": status
+            }
+            agent_data = {
+                "chat_id": chat_id,
+                "agent_id": agent_id
+            }
+            response_status = requests.request("POST", url, json=status_data, headers=headers)
+            response_agent = requests.request("POST", url, json=agent_data, headers=headers)
+        else:
+            status_data = {
+                "chat_id": chat_id,
+                "status": status
+            }
+            response_status = requests.request("POST", url, json=status_data, headers=headers)
         return True

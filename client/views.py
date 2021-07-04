@@ -42,24 +42,36 @@ class Admin(View):
         actives = []
         queue = []
         closed = []        
+        messages_labeled = []
+        messages = []
+        
         for chat in chatList:
+            if chat['chat_id'] == chat_id:
+                actives.append(chat)
             if chat['type_chat'] == 'queue':
                 queue.append(chat)
-            else:
-                if  chat['label'] != 'cerrado':
-                    actives.append(chat)
-            if chat['label'] == 'cerrado':
+            elif chat['type_chat'] == 'active' and chat['label'] == 'N/A':
+                actives.append(chat)
+            elif chat['type_chat'] == 'cerrado':
                 closed.append(chat)
+            elif chat['label'] != 'N/A':
+                messages_labeled.append(chat)
         if 'chat_id' in  request.GET:
             chat_id = request.GET['chat_id']
+            mng = Manager()
+            status = "active"
+            mng.set(chat_id, status, None)
         else:
-            chat_id = actives[0]['chat_id']
+            if actives:
+                chat_id = actives[0]['chat_id']
         messages = self.chat(chat_id)
-        form = MessageForm 
-        #Get users activer for re asing message
-        agents = Users.objects.filter(client_id= client_id, status_user = 1)
+       
+        form = MessageForm         
+        agents = Users.objects.filter(client_id= client_id).filter(status_user = 1)
+        #Get setting labels
         labels = Labels.objects.filter(client_id=client_id)
-        return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form, 'agents': agents, 'labels': labels})
+        
+        return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form, 'agents': agents, 'labels': labels, 'messages_labeled' : messages_labeled})
 
     def chat(self, chat_id):      
         #Details from Chat
