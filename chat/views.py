@@ -147,7 +147,6 @@ def hook(request):
 @api_view(['GET'])
 def chat_info(request,status):
     if request.method == 'GET':
-        print('lol')
         chat_status = status
         if status == "all":
             chat = Chat.objects()

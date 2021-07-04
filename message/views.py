@@ -38,6 +38,8 @@ class Message(View):
             message_handler.sendMessage(request.POST['message_body'], chatId)
         return redirect("/client/?chat_id="+chatId)
 
+    def setAgent()
+
 
 class Label(View):
     template = 'label/list.html'
@@ -79,7 +81,7 @@ class Label(View):
         label.delete()
         return redirect("/message/label")
 
-    def add(request, label, chat_id):
-        chat_id = request.GET['chat_id']
-        label = request.GET['label']
+    def add(request, chat_id, label):
+        mng = Manager()
+        mng.setLabel(chat_id, label)
         return redirect('/client/')

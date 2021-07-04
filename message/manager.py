@@ -69,3 +69,15 @@ class Manager:
         headers = {"Content-Type": "application/json"}
         response = requests.request("POST", url, json=payload, headers=headers)
         return True
+
+    def setLabel(self, chat_id, label):
+        conn = Connection.urlBase
+        url = conn+"/label"
+        payload = {
+            "chat_id": chat_id,
+            "label": label
+        }
+        headers = {"Content-Type": "application/json"}
+        response = requests.request("POST", url, json=payload, headers=headers)
+        print(response)
+        return True

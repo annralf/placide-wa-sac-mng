@@ -4,7 +4,7 @@
     <div class="container-fluid page__heading-container">
         <div class="page__heading d-flex align-items-center"></div>
     </div>
-    <div class="container-fluid page__container">        
+    <div class="container-fluid page__container">
         <div class="card">
             <div class="row h-90 m-0">
                 <div class="col-lg-8 py-3 d-flex flex-column h-50">
@@ -22,40 +22,40 @@
                     <!-- Start Message list section -->
                     <div class="flex p-3 d-flex flex-column">
                         <div data-simplebar style="overflow-y: scroll; overflow-x: hidden; height: 40vh;">
-                            {% for msg in messages %}     
-                                {% if msg.is_client  %}                
-                                    <div class="media border-bottom py-3">
-                                        <a href="#" class="avatar avatar-sm mr-3">
-                                            <img src="{% static 'images/1.png' %}"
-                                                class="avatar-img rounded-circle" alt="avatar">
-                                        </a>
-                                        <div class="media-body">
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex">
-                                                    <a href="#" class="text-body bold">{{ msg.sender }}</a>
-                                                </div>
-                                                <small class="text-muted">{{ msg.time }}</small>
-                                            </div>
-                                            <div>{{ msg.message }}</div>
+                            {% for msg in messages %}
+                            {% if msg.is_client %}
+                            <div class="media border-bottom py-3">
+                                <a href="#" class="avatar avatar-sm mr-3">
+                                    <img src="{% static 'images/1.png' %}" class="avatar-img rounded-circle"
+                                        alt="avatar">
+                                </a>
+                                <div class="media-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex">
+                                            <a href="#" class="text-body bold">{{ msg.sender }}</a>
                                         </div>
+                                        <small class="text-muted">{{ msg.time }}</small>
                                     </div>
-                                    {% else %}
-                                    <div class="media border-bottom py-3 customer-message">
-                                        <div class="media-body">
-                                            <div class="d-flex align-items-center" style="flex-direction: row-reverse;">
-                                                <div class="flex" style="text-align: right; margin-right: 2%;">
-                                                    <a href="#" class="text-body bold">{{ msg.sender }}</a>
-                                                </div>
-                                                <small class="text-muted">{{ msg.time }}</small>
-                                            </div>
-                                            <div class="customer-message-text">{{ msg.time }}</div>
+                                    <div>{{ msg.message }}</div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="media border-bottom py-3 customer-message">
+                                <div class="media-body">
+                                    <div class="d-flex align-items-center" style="flex-direction: row-reverse;">
+                                        <div class="flex" style="text-align: right; margin-right: 2%;">
+                                            <a href="#" class="text-body bold">{{ msg.sender }}</a>
                                         </div>
-                                        <a href="#" class="avatar avatar-sm mr-3">
-                                            <img src="{% static 'images/2.png' %}"
-                                                class="avatar-img rounded-circle" alt="avatar">
-                                        </a>
+                                        <small class="text-muted">{{ msg.time }}</small>
                                     </div>
-                                {% endif %}
+                                    <div class="customer-message-text">{{ msg.time }}</div>
+                                </div>
+                                <a href="#" class="avatar avatar-sm mr-3">
+                                    <img src="{% static 'images/2.png' %}" class="avatar-img rounded-circle"
+                                        alt="avatar">
+                                </a>
+                            </div>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -65,32 +65,39 @@
                             {% csrf_token %}
                             {% render_field form.chat_id value="{{ messages.0.chat_id }}" %}
                             <div class="row" style="flex-wrap: inherit;">
-                                <textarea class="form-control form-control-appended" required="" placeholder="Responder" rows=3 id="message_body" name="message_body" style=" width: 33vw; margin-left: 32px;"></textarea>
+                                <textarea class="form-control form-control-appended" required="" placeholder="Responder"
+                                    rows=3 id="message_body" name="message_body"
+                                    style=" width: 33vw; margin-left: 32px;"></textarea>
                                 <div class="input-group-append">
                                     <div class="input-group-text" style="border: none !important;">
-                                        <button class="btn btn-flush" type="submit"><i class="material-icons" style="font-size: 24px; color: #4a6b4d;">send</i></button>
+                                        <button class="btn btn-flush" type="submit"><i class="material-icons"
+                                                style="font-size: 24px; color: #4a6b4d;">send</i></button>
                                     </div>
-                                    <div class="input-group-text"  style="border: none !important;">
-                                        <button class="btn btn-flush" type="button"><i class="material-icons" style="font-size: 24px; color: #4a6b4d;">tag_faces</i></button>
+                                    <div class="input-group-text" style="border: none !important;">
+                                        <button class="btn btn-flush" type="button"><i class="material-icons"
+                                                style="font-size: 24px; color: #4a6b4d;">tag_faces</i></button>
                                     </div>
-                                    <div class="input-group-text pl-0"  style="border: none !important;">
+                                    <div class="input-group-text pl-0" style="border: none !important;">
                                         <div class="custom-file custom-file-naked d-flex" style="width: 24px">
                                             <input type="file" class="custom-file-input" id="customFile">
                                             <label class="custom-file-label" style="color: inherit;" for="customFile">
-                                                <i class="material-icons" style="font-size: 24px; color: #4a6b4d;">attach_file</i>
+                                                <i class="material-icons"
+                                                    style="font-size: 24px; color: #4a6b4d;">attach_file</i>
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="input-group-text"  style="border: none !important;">
+                                    <div class="input-group-text" style="border: none !important;">
                                         <div class="dropdown ml-auto">
                                             <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
-                                                aria-expanded="false"><i
-                                                    class="material-icons customer-message-icons" style="color: #4a6b4d;">more_vert</i></a>
+                                                aria-expanded="false"><i class="material-icons customer-message-icons"
+                                                    style="color: #4a6b4d;">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right" style="display: none;">
-                                                <a href="javascript:void(0)" class="dropdown-item">Respuesta automática</a>
+                                                <a href="javascript:void(0)" class="dropdown-item">Respuesta
+                                                    automática</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a href="javascript:void(0)" class="dropdown-item">Etiquetar</a>
-                                                <a href="javascript:void(0)" class="dropdown-item">Cerrar conversación</a>
+                                                <a href="javascript:void(0)" class="dropdown-item">Cerrar
+                                                    conversación</a>
                                             </div>
                                         </div>
                                     </div>
@@ -101,42 +108,52 @@
 
                 </div>
                 <div class="col-lg-4 py-3 px-0 bg-white border-left d-flex flex-column">
-                    <div class="form-group px-3">                       
+                    <div class="form-group px-3">
                     </div>
                     <div class="flex d-flex flex-column">
                         <div data-simplebar style="height: 60vh;">
                             <div class="list-group list-group-flush" style="position: relative; z-index: 0;">
                                 {% for act in actives %}
-                                    <div class="list-group-item d-flex media align-items-center customer-chat-active">
-                                        <a href="#" class="avatar avatar-sm media-left mr-3">
-                                            <img src="{% static 'images/1.png' %}"
-                                                alt="Avatar" class="avatar-img rounded-circle">
-                                        </a>
-                                        <div class="media-body">
-                                            <p class="m-0">
-                                                <strong>{{ act.sender }}</strong><br>
-                                                {% if status %}
-                                                    <span class="badge badge-soft-success">Okay</span>
-                                                {% else %}
-                                                    <span class="badge badge-soft-danger">Pendiente por respuesta</span>
-                                                {% endif %}
+                                <div class="list-group-item d-flex media align-items-center customer-chat-active">
+                                    <a href="#" class="avatar avatar-sm media-left mr-3">
+                                        <img src="{% static 'images/1.png' %}" alt="Avatar"
+                                            class="avatar-img rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p class="m-0">
+                                            <strong>{{ act.sender }}</strong><br>
+                                            {% if status %}
+                                            <span class="badge badge-soft-success">Okay</span>
+                                            {% else %}
+                                            <span class="badge badge-soft-danger">Pendiente por respuesta</span>
+                                            {% endif %}
 
-                                            </p>
-                                        </div>
-                                        <a href="/client?chat_id={{ act.chat_id }}" title="Responder"><i
-                                                class="material-icons ml-3 customer-message-icons">reply</i></a>
-                                        <a href="#" title="Guardar"><i
-                                                class="material-icons ml-3 customer-message-icons">save</i></a>                                        
-                                        <div class="dropdown ml-auto">
-                                            <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
-                                                aria-expanded="false"><i
-                                                    class="material-icons customer-message-icons">more_vert</i></a>
-                                            <div class="dropdown-menu dropdown-menu-right" style="display: none;">
-                                                <a href="javascript:void(0)" class="dropdown-item" data-toggle="modal" data-target="#modal-standard">Re asignar</a>
-                                                <a href="javascript:void(0)" class="dropdown-item" data-toggle="modal" data-target="#modal-labels">Etiquetar</a>
-                                            </div>
+                                        </p>
+                                    </div>
+                                    <a href="/client?chat_id={{ act.chat_id }}" title="Responder"><i
+                                            class="material-icons ml-3 customer-message-icons">reply</i></a>
+                                    <a href="#" title="Guardar"><i
+                                            class="material-icons ml-3 customer-message-icons">save</i></a>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"
+                                            aria-expanded="false"><i
+                                                class="material-icons customer-message-icons">label</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            {% for label in labels %}
+                                                <a href="/message/label/add/{{ act.chat_id }}/{{ label.name }}" class="dropdown-item">{{ label.name }}</a>
+                                            {% endfor %}
                                         </div>
                                     </div>
+                                    <div class="dropdown ml-auto">
+                                        <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"  aria-expanded="false">
+                                            <i class="material-icons customer-message-icons">transfer_within_a_station</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="display: none;">
+                                            {% for agent in agents %}
+                                                <a href="/message/agent/set/{{ act.chat_id }}/{{ agent.id }}" class="dropdown-item" >{{ agent.name }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -145,78 +162,4 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Agent list -->
-<div id="modal-standard" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-standard-title" aria-hidden="true" style="display: none; top: 10% !important;" data-backdrop="false">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-standard-title">Agentes Activos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div> 
-            <div class="modal-body" style="overflow-y: auto;">
-                <table class="table mb-0 thead-border-top-0">
-                    <thead>
-                    </thead>
-                    <tbody class="list" id="staff02">
-                        {% for agent in agents%}
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <span class="js-lists-values-employee-name">{{ agent.name }}</span>
-                                    </div>
-                                    <div class="col-lg-6" style="display: flex;  flex-direction: row-reverse;">
-                                        <a  class="btn btn-warning">
-                                            <i class="material-icons mr-1">launch</i> Marcar
-                                        </a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div> 
-        </div> 
-    </div> 
-</div>
-<!-- label list -->
-<div id="modal-labels" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-labels-title" aria-hidden="true" style="display: none; top: 10% !important;" data-backdrop="false">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-labels-title">Etiquetas</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div> 
-            <div class="modal-body" style="overflow-y: auto;">
-                <table class="table mb-0 thead-border-top-0">
-                    <thead>
-                    </thead>
-                    <tbody class="list" id="staff02">
-                        {% for label in labels%}
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <span class="js-lists-values-employee-name">{{ label.name }}</span>
-                                    </div>
-                                    <div class="col-lg-6" style="display: flex;  flex-direction: row-reverse;">
-                                        <a  class="btn btn-success">
-                                            <i class="material-icons mr-1">launch</i> Agregar
-                                        </a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div> 
-        </div> 
-    </div> 
 </div>

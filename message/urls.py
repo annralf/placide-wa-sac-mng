@@ -1,4 +1,5 @@
-from django.urls import path
+from app.message.form import Message
+from django.urls import path, re_path
 from django.conf.urls import include, url
 from . import views
 
@@ -9,4 +10,5 @@ urlpatterns = [
     path('label/new', views.Label.new, name='label_new'),
     path('label/edit/<int:id>', views.Label.edit, name='label_edit'),
     path('label/delete/<int:id>', views.Label.delete, name='label_delete'),
-]
+    path('label/add/<str:chat_id>/<str:label>', views.Label.add, name='label_add'),
+    path('agent/set/<str:chat_id>/<str:user_id>', views.Message.setAgent, name='set_agent_message')
