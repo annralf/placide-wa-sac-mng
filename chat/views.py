@@ -107,8 +107,14 @@ def dialogs(request):
             return std_response(pld=r.json())
 
     if request.method == 'POST':
-        if not 'agent_id' in request.data or not 'chat_id' in request.data:
+        if 'chat_id' in request.data and 'status' in request.data:
+            chat = Chat.objects(chat_id=chat_id)
+            chat.update(type_chat=status)
+            return std_response()
+
+        elif not 'agent_id' in request.data or not 'chat_id' in request.data:
             return std_response(status='Error', msg='Missing argument')
+        
         else:
             #set agent to a chat
             chat_id = request.data['chat_id']
