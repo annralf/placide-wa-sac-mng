@@ -11,22 +11,35 @@ from .agent_form import *
 
 class Login(View):
     template = 'user/login.html'
-
     def get(self, request):
-        form = AuthenticationForm()
+        form = AuthForm()
         return render(request, self.template, {'form': form})
 
     def post(self, request):
-        form = AuthenticationForm(request.POST)
+        form = AuthForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            # return HttpResponseRedirect('/')
+        agent =  User.Users.objects.get(username=username,password=password)
+        form = AuthForm(request.POST, instance= agent)
+        if form.is_valid():
+            form.save()
+            request.session['user_id'] = form.cleaned_data.get('id')
+            request.session['full_name'] = form.cleaned_data.get('name')
+            request.session['rol'] = form.cleaned_data.get('role')
+            request.session['client_id'] = form.cleaned_data.get('client_id')
+            return redirect("home")
         else:
+            form = AuthForm()
+            print(form.errors)
             return render(request, self.template, {'form': form})
-
+            
+    def logout(request):
+        del request.session['user_id']
+        del request.session['full_name']
+        del request.session['rol']
+        del request.session['client_id']
+        return redirect("login")
+        
 
 class Admin(View):
     template = 'user/admin.html'
