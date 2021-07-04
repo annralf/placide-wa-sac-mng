@@ -21,7 +21,7 @@ class Manager:
                 sender = chat['chat_id']
             if 'agent_id' in chat:
                 assigned_to = chat['agent_id']
-            if label in chat:
+            if 'label' in chat:
                 label = chat['label']
             detail = {
                 'chat_id':chat['chat_id'],
