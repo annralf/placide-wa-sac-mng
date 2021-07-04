@@ -5,10 +5,12 @@ import json
 
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.decorators import parser_classes
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 
 # Services
-from .services.messages import getMessages, sendMessage
+from .services.messages import getMessages, sendMessage, sendFile
 from .services.dialogs import getDialogs
 from .services.users import getQrcode
 
@@ -24,6 +26,17 @@ class Index(View):
     def get(self, request):
         agent_name = "testing agent"
         return render(request, self.template, {'agent_name': agent_name})
+
+@api_view(['POST'])
+@parser_classes([FormParser, MultiPartParser])
+def uploadFile(request):
+    print(request)
+    print(dir(request))
+    print(request.FILES)
+    print(request.query_params)
+    print(request.data)
+    #r = sendFile(**request.data)
+    return std_response()
 
 @api_view(['GET','POST','PUT'])
 def agents(request, name = None, instance_id = None):
@@ -94,8 +107,14 @@ def dialogs(request):
             return std_response(pld=r.json())
 
     if request.method == 'POST':
-        if not 'agent_id' in request.data or not 'chat_id' in request.data:
+        if 'chat_id' in request.data and 'status' in request.data:
+            chat = Chat.objects(chat_id=chat_id)
+            chat.update(type_chat=status)
+            return std_response()
+
+        elif not 'agent_id' in request.data or not 'chat_id' in request.data:
             return std_response(status='Error', msg='Missing argument')
+        
         else:
             #set agent to a chat
             chat_id = request.data['chat_id']
