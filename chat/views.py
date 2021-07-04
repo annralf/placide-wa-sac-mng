@@ -108,6 +108,8 @@ def dialogs(request):
 
     if request.method == 'POST':
         if 'chat_id' in request.data and 'status' in request.data:
+            chat_id = request.data['chat_id']
+            status = request.data['status']
             chat = Chat.objects(chat_id=chat_id)
             chat.update(type_chat=status)
             return std_response()

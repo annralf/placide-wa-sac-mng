@@ -79,5 +79,27 @@ class Manager:
         }
         headers = {"Content-Type": "application/json"}
         response = requests.request("POST", url, json=payload, headers=headers)
-        print(response)
+        return True
+
+    def set(self, chat_id, status, agent_id):
+        conn = Connection.urlBase
+        url = conn+"/chats"
+        headers = {"Content-Type": "application/json"}
+        if(agent_id != None):
+            status_data = {
+                "chat_id": chat_id,
+                "status": status
+            }
+            agent_data = {
+                "chat_id": chat_id,
+                "agent_id": agent_id
+            }
+            response_status = requests.request("POST", url, json=status_data, headers=headers)
+            response_agent = requests.request("POST", url, json=agent_data, headers=headers)
+        else:
+            status_data = {
+                "chat_id": chat_id,
+                "status": status
+            }
+            response_status = requests.request("POST", url, json=status_data, headers=headers)
         return True

@@ -52,12 +52,15 @@ class Admin(View):
                 closed.append(chat)
         if 'chat_id' in  request.GET:
             chat_id = request.GET['chat_id']
+            mng = Manager()
+            status = "active"
+            mng.set(chat_id, status, None)
         else:
             chat_id = actives[0]['chat_id']
         messages = self.chat(chat_id)
         form = MessageForm 
         #Get users activer for re asing message
-        agents = Users.objects.filter(client_id= client_id, status_user = 1)
+        agents = Users.objects.filter(client_id= client_id).filter(status_user = 1)
         labels = Labels.objects.filter(client_id=client_id)
         return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form, 'agents': agents, 'labels': labels})
 

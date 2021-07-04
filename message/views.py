@@ -11,25 +11,6 @@ from .models import Labels
 # from .models import Queue, Agent#, Chat
 
 class Message(View):
-#     activesTmp = 'message/actives.html'
-#     queueTmp = 'message/queue.html'
-#     closeTmp = 'message/close.html'
-#     labeledTmp = 'message/labeled.html'
-
-#     def get(self, request, type='active'):
-#         if type == 'active':
-#             return render(request, self.activesTmp) 
-
-#         if type == 'queue':
-#             return render(request, self.queueTmp) 
-
-#         if type == 'closed':
-#             return render(request, self.closeTmp) 
-
-#         if type == 'labeled':
-#             return render(request, self.labeledTmp) 
-#         return redirect("/client/")
-
 
     def send(request):
         if request.method == 'POST':
@@ -38,7 +19,15 @@ class Message(View):
             message_handler.sendMessage(request.POST['message_body'], chatId)
         return redirect("/client/?chat_id="+chatId)
 
-    def setAgent()
+    def setAgent(request, chat_id, status, agent_id):
+        mng = Manager()
+        response = mng.set(chat_id, status, agent_id)
+        return redirect('/client/')
+    
+    def setStatus(request, chat_id, status):
+        mng = Manager()
+        response = mng.set(chat_id, status, None)
+        return redirect('/client/chat_id='+chat_id)
 
 
 class Label(View):

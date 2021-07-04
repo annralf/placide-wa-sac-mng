@@ -21,9 +21,9 @@
                     {% for queues in queue %}
                             <ul class="sidebar-submenu collapse show " id="dashboards_menu">
                                 <li class="sidebar-menu-item active">
-                                    <a class="sidebar-menu-button" href="/client?chat_id={{ queues.chat_id }}">
+                                    <a class="sidebar-menu-button" href="/client?chat_id={{queues.chat_id }}">
                                         {% if  messages.0.chat_id == queues.chat_id %}
-                                            <span class="sidebar-menu-text" style="color: #067111;                             text-decoration: underline;">{{ queues.sender }}</span>
+                                            <span class="sidebar-menu-text" style="color: #067111; text-decoration: underline;">{{ queues.sender }}</span>
                                         {% else %}
                                             <span class="sidebar-menu-text">{{ queues.sender }}</span>
                                         {% endif %}
@@ -44,7 +44,7 @@
                             <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button" href="/client?chat_id={{ chat_active.chat_id }}">
                                     {% if  messages.0.chat_id == chat_active.chat_id %}
-                                    <span class="sidebar-menu-text" style="color: #067111;                             text-decoration: underline;">{{ chat_active.sender }}</span>
+                                    <span class="sidebar-menu-text" style="color: #067111; text-decoration: underline;">{{ chat_active.sender }}</span>
                                 {% else %}
                                     <span class="sidebar-menu-text">{{ queues.sender }}</span>
                                 {% endif %}

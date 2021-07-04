@@ -8,17 +8,6 @@
         <div class="card">
             <div class="row h-90 m-0">
                 <div class="col-lg-8 py-3 d-flex flex-column h-50">
-                    <!-- <div class="card stories-card">
-                        <div class="stories-card__content d-flex align-items-center flex-wrap">
-                            <div class="search-form form-control-rounded search-form--light">
-                                <input type="text" class="form-control" placeholder="Buscar en mensage"
-                                    id="searchSample02">
-                                <button class="btn" type="button" role="button"><i
-                                        class="material-icons">search</i></button>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <!-- Start Message list section -->
                     <div class="flex p-3 d-flex flex-column">
                         <div data-simplebar style="overflow-y: scroll; overflow-x: hidden; height: 40vh;">
@@ -149,7 +138,7 @@
                                             <i class="material-icons customer-message-icons">transfer_within_a_station</i></a>
                                         <div class="dropdown-menu dropdown-menu-right" style="display: none;">
                                             {% for agent in agents %}
-                                                <a href="/message/agent/set/{{ act.chat_id }}/{{ agent.id }}" class="dropdown-item" >{{ agent.name }}</a>
+                                                <a href="/message/agent/set/{{ act.chat_id }}/active/{{ agent.id }}" class="dropdown-item" >{{ agent.name }}</a>
                                             {% endfor %}
                                         </div>
                                     </div>
