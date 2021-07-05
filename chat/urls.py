@@ -19,5 +19,5 @@ urlpatterns = [
     re_path(r'^chats/?', views.dialogs, name='dialogs'),
     re_path(r'^label/?', views.update_label, name='label'),
     re_path(r'^filter/?(?P<status>[\w]+)?', views.chat_info, name='info'),
-    re_path(r'^hook/?$', views.hook, name='hook')
+    re_path(r'^hook/?(?P<id>[\w@\.]+)?$', views.hook, name='hook')
 ]

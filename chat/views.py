@@ -129,7 +129,7 @@ def dialogs(request):
             return std_response()
 
 @api_view(['POST'])
-def hook(request):
+def hook(request,id):
     if request.method == 'POST':
         if 'messages' in request.data:
             chatId = request.data['messages'][0]['chatId']
@@ -157,6 +157,7 @@ def hook(request):
                     'chat_id': chatId,
                     'sender': sender,
                     'agent_id': agentId,
+                    'client_id': id,
                     'status': True,
                     'type_chat': chat_status,
                     'created_at': created_at,
