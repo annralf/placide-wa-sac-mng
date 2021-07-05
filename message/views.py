@@ -12,11 +12,9 @@ from .models import Labels
 
 class Message(View):
     def send(request):
-        print('here')
         if request.method == 'POST':
             message_handler = Manager()
             chatId = request.POST['chat_id']
-            print(chatId)
             message_handler.sendMessage(request.POST['message_body'], chatId)
         return HttpResponseRedirect("/client?chat_id="+chatId)
 
@@ -34,13 +32,13 @@ class Message(View):
 class Label(View):
     template = 'label/list.html'
     def get(self, request):
-        client_id = 1
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
         labels =Labels.objects.filter(client_id=client_id)
         return render(request,self.template,{'labels': labels})
     
     def new(request):
         template = 'label/new.html'
-        client_id = 1
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
         if request.method == 'POST':
             form = LabelsForm(request.POST)
             if form.is_valid():

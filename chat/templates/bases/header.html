@@ -17,7 +17,7 @@
 
 
                 <!-- Navbar Brand -->
-                <a href="/client/" class="navbar-brand ">
+                <a href="{% url 'home' %}" class="navbar-brand ">
                     <img class="navbar-brand-icon" src="{% static 'images/Manager.svg' %}" width="70" alt="Stack">
                     <span>WhatApp Admin</span>
                 </a>
@@ -27,7 +27,7 @@
                             data-caret="false">
                             <i class="material-icons nav-icon navbar-notifications-indicator">notifications</i>
                         </a>
-                        <div id="notifications_menu"
+                        <!-- <div id="notifications_menu"
                             class="dropdown-menu dropdown-menu-right navbar-notifications-menu">
                             <div class="dropdown-item d-flex align-items-center py-2">
                                 <span class="flex navbar-notifications-menu__title m-0">Notifications</span>
@@ -163,7 +163,7 @@
                             </div>
                             <a href="javascript:void(0);"
                                 class="dropdown-item text-center navbar-notifications-menu__footer">View All</a>
-                        </div>
+                        </div> -->
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#account_menu" class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -176,14 +176,13 @@
                         </a>
                         <div id="account_menu" class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-item-text dropdown-item-text--lh">
-                                <div><strong>Adrian Demian</strong></div>
-                                <div>@adriandemian</div>
+                                <div><strong>{{ request.session.full_name }}</strong></div>
+                                <div>@{{  request.session.username }}</div>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item active" href="index.html">Home</a>
-                            <a class="dropdown-item" href="profile.html">Perfil</a>
+                            <a class="dropdown-item active" href="{% url 'home' %}">Home</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="login.html">Cerrar Sesión</a>
+                            <a class="dropdown-item" href="/user/logout">Cerrar Sesión</a>
                         </div>
                     </li>
                 </ul>

@@ -5,7 +5,11 @@
     <div class="mdk-header-layout__content">
         <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
             {% include "../bases/user_edit.html" %}
+            {% if request.session.rol == 3 %}
+            {% include "../bases/manager_sidebar.html" %}       
+            {% else %}
             {% include "../bases/admin_sidebar.html" %}       
+            {% endif %}
         </div>
     </div>
 </div>
