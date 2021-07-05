@@ -22,7 +22,7 @@ class Message(View):
         mng = Manager()
         response = mng.set(chat_id, status, agent_id)
         return redirect('/client/')
-    
+
     def setStatus(request, chat_id, status):
         mng = Manager()
         response = mng.set(chat_id, status, None)

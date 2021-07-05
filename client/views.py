@@ -37,7 +37,7 @@ class Client(View):
 class Admin(View):
     template = 'user/admin.html'
     def get(self, request, chat_id = None):
-        client_id = request.session['client_id'] if request.session['client_id'] else 1
+        client_id = request.session['client_id'] if 'client_id' in request.session else 1
         chatList = Manager.getChats('all')
         response = 'Manager Agent'
         actives = []
