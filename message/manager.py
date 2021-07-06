@@ -1,14 +1,16 @@
 import requests 
 from datetime import datetime
 import os
+from  client.models import Client
 
 class Connection:
     urlBase = os.environ.get("HOST_DEV")
 
 class Manager:
-    def getChats(self, type='all'):
+    def getChats(self, type, client_id):
         conn = Connection.urlBase
-        url = conn+"/filter/"+type
+        client = Client.objects.get(id=client_id) 
+        url = conn+"/filter/"+type+"/"+client.token+"/"+client.instance
         response = requests.get(url)
         chatList = response.json()
         list = []
@@ -34,10 +36,11 @@ class Manager:
             list.append(detail)
         return list
 
-    def getChatDetail(self, chat_id):
+    def getChatDetail(self, chat_id, client_id):
         #Get chats details
         conn = Connection.urlBase
-        url = conn+"/messages?chatId="+chat_id
+        client = Client.objects.filter(id=client_id).first() 
+        url = conn+"/messages?chatId="+chat_id+"/"+client.token+"/"+client.instance
         response = requests.get(url)
         chats = response.json()
         list = []
@@ -56,50 +59,63 @@ class Manager:
             list.append(message)
         return list
 
-    def sendMessage(self, body, phone):
+    def sendMessage(self, body, phone, client_id):
         #Message Sender
         conn = Connection.urlBase
+        client = Client.objects.filter(id=client_id).first() 
         url = conn+"/messages/"
         payload = {"messages": [
         {
             "body":body,
-            "chatId": phone
+            "chatId": phone,
+            "token" : client.token,
+            "instance" : client.instance
         }
         ]}
         headers = {"Content-Type": "application/json"}
         response = requests.request("POST", url, json=payload, headers=headers)
         return True
 
-    def setLabel(self, chat_id, label):
+    def setLabel(self, chat_id, label, client_id):
         conn = Connection.urlBase
+        client = Client.objects.filter(id=client_id).first()
         url = conn+"/label"
         payload = {
             "chat_id": chat_id,
-            "label": label
+            "label": label,
+            "token" : client.token,
+            "instance" : client.instance
         }
         headers = {"Content-Type": "application/json"}
         response = requests.request("POST", url, json=payload, headers=headers)
         return True
 
-    def set(self, chat_id, status, agent_id):
+    def set(self, chat_id, status, agent_id, client_id):
         conn = Connection.urlBase
         url = conn+"/chats"
+        client = Client.objects.filter(id=client_id).first()
         headers = {"Content-Type": "application/json"}
         if(agent_id != None):
             status_data = {
                 "chat_id": chat_id,
-                "status": status
+                "status": status,
+                "token" : client.token,
+                "instance" : client.instance
             }
             agent_data = {
                 "chat_id": chat_id,
-                "agent_id": agent_id
+                "agent_id": agent_id,
+                "token" : client.token,
+                "instance" : client.instance
             }
             response_status = requests.request("POST", url, json=status_data, headers=headers)
             response_agent = requests.request("POST", url, json=agent_data, headers=headers)
         else:
             status_data = {
                 "chat_id": chat_id,
-                "status": status
+                "status": status,
+                "token" : client.token,
+                "instance" : client.instance
             }
             response_status = requests.request("POST", url, json=status_data, headers=headers)
         return True

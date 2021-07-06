@@ -38,14 +38,14 @@ class Admin(View):
     template = 'user/admin.html'
     def get(self, request, chat_id = None):
         client_id = request.session['client_id'] if 'client_id' in request.session else 1
-        chatList = Manager.getChats('all')
+        mng = Manager()
+        chatList = mng.getChats('all',client_id)
         response = 'Manager Agent'
         actives = []
         queue = []
         closed = []        
         messages_labeled = []
-        messages = []
-        
+        messages = []        
         for chat in chatList:
             if chat['chat_id'] == chat_id:
                 actives.append(chat)
@@ -61,11 +61,11 @@ class Admin(View):
             chat_id = request.GET['chat_id']
             mng = Manager()
             status = "active"
-            mng.set(chat_id, status, None)
+            mng.set(chat_id, status, None,client_id)
         else:
             if actives:
                 chat_id = actives[0]['chat_id']
-        messages = self.chat(chat_id)
+        messages = self.chat(chat_id, client_id)
        
         form = MessageForm         
         agents = Users.objects.filter(client_id= client_id).filter(status_user = 1)
@@ -74,14 +74,15 @@ class Admin(View):
         
         return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form, 'agents': agents, 'labels': labels, 'messages_labeled' : messages_labeled})
 
-    def chat(self, chat_id):      
+    def chat(self, chat_id, client_id):      
         #Details from Chat
         mng = Manager()
-        messages = mng.getChatDetail(chat_id)
+        messages = mng.getChatDetail(chat_id, client_id)
         return messages
 
     def edit(request, id):
         template = 'client/edit.html'
+        client_id = request.session['client_id'] if 'client_id' in request.session else 1
         if request.method == 'POST':
             client =  Cli.objects.get(id=id)
             form = NewForm(request.POST, instance= client)
@@ -93,7 +94,7 @@ class Admin(View):
         else:
             client = Cli.objects.get(id=id)
             manager = ClientMng()
-            image = manager.getQr()
+            image = manager.getQr(client_id)
             return render(request,template,{'client':client, 'image': image})
     
     def delete(request, id):
@@ -109,7 +110,7 @@ class Show(View):
     def get(self, request, id):
         client = Cli.objects.get(id=id)
         manager = ClientMng()
-        image = manager.getQr()
+        image = manager.getQr(id)
         return render(request, self.template, {'client': client, 'image': image})
 
 

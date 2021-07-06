@@ -6,9 +6,9 @@ class Connection:
     urlBase = os.environ.get("HOST_DEV")
 
 class Manager:
-    def getQr(self):
+    def getQr(self, client_id):
         conn = Connection.urlBase
-        url = conn+'/qr'
+        url = conn+'/qr/'+client_id
         response = requests.get(url)
         code = response.json()
         if(code['status'] == 'Ok'):

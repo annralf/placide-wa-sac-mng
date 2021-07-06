@@ -15,17 +15,20 @@ class Message(View):
         if request.method == 'POST':
             message_handler = Manager()
             chatId = request.POST['chat_id']
-            message_handler.sendMessage(request.POST['message_body'], chatId)
+            client_id = request.session['client_id'] if request.session['client_id'] else 1
+            message_handler.sendMessage(request.POST['message_body'], chatId,client_id)
         return HttpResponseRedirect("/client?chat_id="+chatId)
 
     def setAgent(request, chat_id, status, agent_id):
         mng = Manager()
-        response = mng.set(chat_id, status, agent_id)
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
+        response = mng.set(chat_id, status, agent_id, client_id)
         return redirect('/client/')
 
     def setStatus(request, chat_id, status):
         mng = Manager()
-        response = mng.set(chat_id, status, None)
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
+        response = mng.set(chat_id, status, None, client_id)
         return redirect('/client/chat_id='+chat_id)
 
 
@@ -71,5 +74,6 @@ class Label(View):
 
     def add(request, chat_id, label):
         mng = Manager()
-        mng.setLabel(chat_id, label)
+        client_id = request.session['client_id'] if request.session['client_id'] else 1
+        mng.setLabel(chat_id, label, client_id)
         return redirect('/client/')
