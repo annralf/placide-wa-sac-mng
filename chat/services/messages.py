@@ -6,8 +6,8 @@ from chat._constants import *
 # Get one or more messages from WS api
 # 100 last messages by default
 def getMessages( lastMessageNumber = None, last = None, chatId = None,
-                limit = None, min_time = None, max_time = None ):
-    payload = {'token': TOKEN}
+                limit = None, min_time = None, max_time = None, token, instance ):
+    payload = {'token': token}
 
     # Optional params
     if lastMessageNumber is not None:
@@ -23,13 +23,13 @@ def getMessages( lastMessageNumber = None, last = None, chatId = None,
     if max_time is not None:
         payload['max_time'] = max_time
 
-    r = requests.get(f'{API_URL}/messages', params=payload)
+    r = requests.get(f'{API_URL}/{instance}/messages', params=payload)
     return r
 
 # Send messages to WS api
 def sendMessage( body,quotedMsgId = None,chatId = None,phone = None,
-                mentionedPhones = None ):
-    payload = {'token': TOKEN}
+                mentionedPhones = None, token, instance ):
+    payload = {'token': token}
 
     # Optional parameters
     if not chatId and not phone:
@@ -43,13 +43,13 @@ def sendMessage( body,quotedMsgId = None,chatId = None,phone = None,
     if mentionedPhones is not None:
         payload['mentionedPhones'] = mentionedPhones
 
-    r = requests.post(f'{API_URL}/sendMessage', params = payload, 
+    r = requests.post(f'{API_URL}/{instance}/sendMessage', params = payload, 
                         data = {'body': body} )
     return r
 
 # Forward message to a new or existing chat
-def forwardMessage( body,messageId, chatId = None, phone = None ):
-    payload = {'token': TOKEN}
+def forwardMessage( body,messageId, chatId = None, phone = None,token, instance ):
+    payload = {'token': token}
 
     # Optional paramenters
     if not chatId and not phone:
@@ -59,14 +59,15 @@ def forwardMessage( body,messageId, chatId = None, phone = None ):
     else:
         payload['phone'] = phone
 
-    r = requests.post(f'{API_URL}/forwardMessage', params = payload,
+    r = requests.post(f'{API_URL}/{instance}/forwardMessage', params = payload,
                         data = {'body': body} )
     return r
 
 # Send a file
 def sendFile( body, filename, caption = None ,quotedMsgId = None, cached = None,
-                chatId = None, phone = None, mentionedPhones = None ):
-    payload = {'token': TOKEN}
+                chatId = None, phone = None, mentionedPhones = None, token,
+                instance ):
+    payload = {'token': token}
 
     # Optional parameters
     if not chatId and not phone:
@@ -84,7 +85,7 @@ def sendFile( body, filename, caption = None ,quotedMsgId = None, cached = None,
     if mentionedPhones is not None:
         payload['mentionedPhones'] = mentionedPhones
 
-    r = requests.post(f'{API_URL}/sendFile', params = payload, 
+    r = requests.post(f'{API_URL}/{instance}/sendFile', params = payload, 
                         data = {'body': body} )
     return r
 

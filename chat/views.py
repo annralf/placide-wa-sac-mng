@@ -38,42 +38,11 @@ def uploadFile(request):
     #r = sendFile(**request.data)
     return std_response()
 
-@api_view(['GET','POST','PUT'])
-def agents(request, name = None, instance_id = None):
-    if request.method == 'GET':
-        if name is None:
-            pass
-            r = Agent.objects.all()
-        else:
-            pass
-            r = Agent.objects.filter(agent_name = name)
-
-        print(dir(r))
-        return std_response(pld=r.values())
-
-    if request.method == 'POST':
-        if 'name' in request.data:
-            pass
-            q = Agent(agent_name = request.data['name'])
-            q.save()
-        else:
-            return std_response('Mising argument "NAME"')
-        return std_response('Done')
-
-    if request.method == 'PUT':
-        if 'name' in request.data and 'instance' in request.data:
-            name = request.data['name']
-            instace = request.data['instance']
-            agent =  Agent.objects.filter(agent_name = name)
-            print(agent)
-            agent['instances'] = list(agent['instances']).append(instance)
-            agent.save()
-
-        return std_response('assigned')
-
 @api_view(['GET','POST'])
-def messages(request,id = None):
+def messages(request,id = None,token = None,instance = None):
     if request.method == 'GET':
+        if token is None or instance is None:
+            return std_response(msg='Missing token or instance')
         if id is not None:
             r = Queue.objects.filter(message = {'ws_id': id})
             return std_response(pld=r.values())
