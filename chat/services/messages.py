@@ -5,8 +5,8 @@ from chat._constants import *
 
 # Get one or more messages from WS api
 # 100 last messages by default
-def getMessages( lastMessageNumber = None, last = None, chatId = None,
-                limit = None, min_time = None, max_time = None, token, instance ):
+def getMessages( token, instance, lastMessageNumber = None, last = None, 
+                chatId = None,limit = None, min_time = None, max_time = None):
     payload = {'token': token}
 
     # Optional params
@@ -27,8 +27,8 @@ def getMessages( lastMessageNumber = None, last = None, chatId = None,
     return r
 
 # Send messages to WS api
-def sendMessage( body,quotedMsgId = None,chatId = None,phone = None,
-                mentionedPhones = None, token, instance ):
+def sendMessage(  token, instance, body,quotedMsgId = None,chatId = None,
+                    phone = None,mentionedPhones = None):
     payload = {'token': token}
 
     # Optional parameters
@@ -48,7 +48,7 @@ def sendMessage( body,quotedMsgId = None,chatId = None,phone = None,
     return r
 
 # Forward message to a new or existing chat
-def forwardMessage( body,messageId, chatId = None, phone = None,token, instance ):
+def forwardMessage(token, instance, body,messageId, chatId = None, phone = None ):
     payload = {'token': token}
 
     # Optional paramenters
@@ -64,9 +64,8 @@ def forwardMessage( body,messageId, chatId = None, phone = None,token, instance 
     return r
 
 # Send a file
-def sendFile( body, filename, caption = None ,quotedMsgId = None, cached = None,
-                chatId = None, phone = None, mentionedPhones = None, token,
-                instance ):
+def sendFile( token,instance,body, filename, caption = None ,quotedMsgId = None, cached = None,
+                chatId = None, phone = None, mentionedPhones = None ):
     payload = {'token': token}
 
     # Optional parameters
