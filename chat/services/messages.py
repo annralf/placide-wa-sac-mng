@@ -22,7 +22,6 @@ def getMessages( token, instance, lastMessageNumber = None, last = None,
         payload['min_time'] = min_time
     if max_time is not None:
         payload['max_time'] = max_time
-
     r = requests.get(f'{API_URL}/{instance}/messages', params=payload)
     return r
 

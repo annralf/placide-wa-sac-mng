@@ -39,20 +39,20 @@ def uploadFile(request):
     return std_response()
 
 @api_view(['GET','POST'])
-def messages(request,id = None,token = None,instance = None):
+def messages(request,token = None,instance = None):
     if request.method == 'GET':
         if token is None or instance is None:
             return std_response(msg='Missing token or instance')
-        if id is not None:
-            r = Queue.objects.filter(message = {'ws_id': id})
-            return std_response(pld=r.values())
-
-        elif 'cached' in request.query_params:
-            r = Queue.objects.all()
-            return std_response(pld=r.values())
-        else:
-            r = getMessages(**request.query_params)
-            return std_response(pld=r.json())
+#        if id is not None:
+#            r = Queue.objects.filter(message = {'ws_id': id})
+#            return std_response(pld=r.values())
+#
+#        elif 'cached' in request.query_params:
+#            r = Queue.objects.all()
+#            return std_response(pld=r.values())
+#        else:
+        r = getMessages(token,instance,**request.query_params)
+        return std_response(pld=r.json())
 
     elif request.method == 'POST':
         if not 'messages' in request.data:
@@ -136,7 +136,7 @@ def hook(request,id):
         return std_response('Ok')
 
 @api_view(['GET'])
-def chat_info(request,status):
+def chat_info(request,status,token,instance):
     if request.method == 'GET':
         chat_status = status
         if status == "all":
