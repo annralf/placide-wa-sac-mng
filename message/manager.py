@@ -40,7 +40,7 @@ class Manager:
         #Get chats details
         conn = Connection.urlBase
         client = Client.objects.filter(id=client_id).first() 
-        url = conn+"/messages?chatId="+chat_id+"/"+client.token+"/"+client.instance
+        url = conn+"/messages/"+client.token+"/"+client.instance+"/?chatId="+chat_id
         response = requests.get(url)
         chats = response.json()
         list = []
