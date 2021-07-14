@@ -28,14 +28,15 @@ class Index(View):
         return render(request, self.template, {'agent_name': agent_name})
 
 @api_view(['POST'])
-@parser_classes([FormParser, MultiPartParser])
-def uploadFile(request):
-    print(request)
-    print(dir(request))
-    print(request.FILES)
-    print(request.query_params)
+def uploadFile(request,token,instance):
     print(request.data)
-    #r = sendFile(**request.data)
+    data = request.data
+    phone = data.get('phone')
+    print(phone)
+    filename = data.get('filename')
+    body = data.get('body')
+    r = sendFile(token,instance,body.file,filename,phone)
+    print(r.json())
     return std_response()
 
 @api_view(['GET','POST'])

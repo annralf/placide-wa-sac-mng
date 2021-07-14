@@ -13,7 +13,7 @@ urlpatterns = [
     url('client/', include('client.urls')),
     re_path(r'^$', Login.as_view(),name='index'),
     path('messages/<token>/<instance>/', views.messages, name='messages'),
-    re_path(r'^sendFile/?', views.uploadFile, name='file'),
+    path('sendFile/<token>/<instance>/', views.uploadFile, name='file'),
     re_path(r'^qr/?', views.get_qr, name='qr'),
     re_path(r'^chats/?', views.dialogs, name='dialogs'),
     re_path(r'^label/?', views.update_label, name='label'),

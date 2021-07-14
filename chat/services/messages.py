@@ -63,11 +63,12 @@ def forwardMessage(token, instance, body,messageId, chatId = None, phone = None 
     return r
 
 # Send a file
-def sendFile( token,instance,body, filename, caption = None ,quotedMsgId = None, cached = None,
-                chatId = None, phone = None, mentionedPhones = None ):
+def sendFile( token,instance,body, filename, phone = None, caption = None ,quotedMsgId = None, cached = None,
+                chatId = None, mentionedPhones = None ):
     payload = {'token': token}
 
     # Optional parameters
+    print(phone)
     if not chatId and not phone:
         raise Exception('Need chatId or phone to send the message')
     if chatId is not None:
@@ -83,8 +84,8 @@ def sendFile( token,instance,body, filename, caption = None ,quotedMsgId = None,
     if mentionedPhones is not None:
         payload['mentionedPhones'] = mentionedPhones
 
-    r = requests.post(f'{API_URL}/{instance}/sendFile', params = payload, 
-                        data = {'body': body} )
+    r = requests.post(f'{API_URL}/{instance}/sendFile', params = payload,
+                        files = {'file': body} )
     return r
 
 # Get History of messages
