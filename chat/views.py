@@ -36,7 +36,7 @@ def uploadFile(request,token,instance):
     filename = data.get('filename')
     body = data.get('body')
     r = sendFile(token,instance,body.file,filename,phone)
-    print(r.json())
+    print(r.text)
     return std_response()
 
 @api_view(['GET','POST'])

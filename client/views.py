@@ -10,7 +10,7 @@ from  .models import Client as Cli
 from .form import New as NewForm
 from message.form import Message as MessageForm
 from message.models import Labels
-from user.models import Users 
+from user.models import Users
 
 from message.manager import Manager
 from .manager import Manager as ClientMng
@@ -43,9 +43,10 @@ class Admin(View):
         response = 'Manager Agent'
         actives = []
         queue = []
-        closed = []        
+        closed = []
         messages_labeled = []
-        messages = []        
+        messages = []
+        chat_id = ''
         for chat in chatList:
             if chat['chat_id'] == chat_id:
                 actives.append(chat)
@@ -65,16 +66,17 @@ class Admin(View):
         else:
             if actives:
                 chat_id = actives[0]['chat_id']
+        print(chat_id,client_id)
         messages = self.chat(chat_id, client_id)
-       
-        form = MessageForm         
+
+        form = MessageForm
         agents = Users.objects.filter(client_id= client_id).filter(status_user = 1)
         #Get setting labels
         labels = Labels.objects.filter(client_id=client_id)
-        
+
         return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form, 'agents': agents, 'labels': labels, 'messages_labeled' : messages_labeled})
 
-    def chat(self, chat_id, client_id):      
+    def chat(self, chat_id, client_id):
         #Details from Chat
         mng = Manager()
         messages = mng.getChatDetail(chat_id, client_id)
@@ -96,13 +98,13 @@ class Admin(View):
             manager = ClientMng()
             image = manager.getQr(client_id)
             return render(request,template,{'client':client, 'image': image})
-    
+
     def delete(request, id):
         try:
             client = Cli.objects.get(id=id)
             client.delete()
         except:
-            print("An exception occurred")        
+            print("An exception occurred")
         return redirect('admin')
 
 class Show(View):
@@ -117,7 +119,7 @@ class Show(View):
 class New(View):
     template = 'client/new.html'
     def get(self, request):
-        form = NewForm        
+        form = NewForm
         return render(request,self.template, {'form': form})
     def post(self, request):
         form = NewForm(request.POST)

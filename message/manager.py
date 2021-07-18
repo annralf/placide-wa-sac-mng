@@ -38,6 +38,7 @@ class Manager:
 
     def getChatDetail(self, chat_id, client_id):
         #Get chats details
+        print(chat_id, client_id)
         conn = Connection.urlBase
         client = Client.objects.filter(id=client_id).first() 
         url = conn+"/messages/"+client.token+"/"+client.instance+"/?chatId="+chat_id
