@@ -68,7 +68,6 @@ def sendFile( token,instance,body, filename, phone = None, caption = None ,quote
     payload = {'token': token}
 
     # Optional parameters
-    print(phone)
     if not chatId and not phone:
         raise Exception('Need chatId or phone to send the message')
     if chatId is not None:
@@ -83,9 +82,11 @@ def sendFile( token,instance,body, filename, phone = None, caption = None ,quote
         payload['cached'] = quotedMsgId
     if mentionedPhones is not None:
         payload['mentionedPhones'] = mentionedPhones
+    
+    payload['filename'] = filename
 
     r = requests.post(f'{API_URL}/{instance}/sendFile', params = payload,
-                        files = {'file': body} )
+                        files = {'body': body} )
     return r
 
 # Get History of messages
