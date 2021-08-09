@@ -19,20 +19,21 @@ class Login(View):
     def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
-        agent =  User.Users.objects.filter(username= username, password=password).first()                  
+        agent =  User.Users.objects.filter(username= username, password=password).first()            
         if agent:
-            agent.status = 1
+            client_id = agent.client_id.id
             agent.save()   
             request.session['user_id'] = agent.id
             request.session['username'] = agent.username
             request.session['full_name'] = agent.name
             request.session['rol'] = agent.role_id
-            request.session['client_id'] = agent.client_id
+            if(agent.role_id == 4):
+                client_id = agent.id
+            request.session['client_id'] = client_id
             request.session['logged'] = True
             return redirect("home")
         else:
             form = AuthForm()
-            print(form.errors)
             return render(request, self.template, {'form': form})
             
     def logout(request):

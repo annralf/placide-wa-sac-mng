@@ -37,6 +37,7 @@ class Client(View):
 class Admin(View):
     template = 'user/admin.html'
     def get(self, request, chat_id = None):
+        print(request.session)
         client_id = request.session['client_id'] if 'client_id' in request.session else 1
         mng = Manager()
         chatList = mng.getChats('all',client_id)
@@ -47,34 +48,38 @@ class Admin(View):
         messages_labeled = []
         messages = []
         chat_id = ''
-        for chat in chatList:
-            if chat['chat_id'] == chat_id:
-                actives.append(chat)
-            if chat['type_chat'] == 'queue':
-                queue.append(chat)
-            elif chat['type_chat'] == 'active' and chat['label'] == 'N/A':
-                actives.append(chat)
-            elif chat['type_chat'] == 'cerrado':
-                closed.append(chat)
-            elif chat['label'] != 'N/A':
-                messages_labeled.append(chat)
-        if 'chat_id' in  request.GET:
-            chat_id = request.GET['chat_id']
-            mng = Manager()
-            status = "active"
-            mng.set(chat_id, status, None,client_id)
+        if chatList == 0:
+            print(client_id)
+            return render(request, 'client/error.html')
         else:
-            if actives:
-                chat_id = actives[0]['chat_id']
-        print(chat_id,client_id)
-        messages = self.chat(chat_id, client_id)
+            for chat in chatList:
+                if chat['chat_id'] == chat_id:
+                    actives.append(chat)
+                if chat['type_chat'] == 'queue':
+                    queue.append(chat)
+                elif chat['type_chat'] == 'active' and chat['label'] == 'N/A':
+                    actives.append(chat)
+                elif chat['type_chat'] == 'cerrado':
+                    closed.append(chat)
+                elif chat['label'] != 'N/A':
+                    messages_labeled.append(chat)
+            if 'chat_id' in  request.GET:
+                chat_id = request.GET['chat_id']
+                mng = Manager()
+                status = "active"
+                mng.set(chat_id, status, None,client_id)
+            else:
+                if actives:
+                    chat_id = actives[0]['chat_id']
+            print(chat_id,client_id)
+            messages = self.chat(chat_id, client_id)
 
-        form = MessageForm
-        agents = Users.objects.filter(client_id= client_id).filter(status_user = 1)
-        #Get setting labels
-        labels = Labels.objects.filter(client_id=client_id)
+            form = MessageForm
+            agents = Users.objects.filter(client_id= client_id).filter(status_user = 1)
+            #Get setting labels
+            labels = Labels.objects.filter(client_id=client_id)
 
-        return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form, 'agents': agents, 'labels': labels, 'messages_labeled' : messages_labeled})
+            return render(request,self.template, {'agent_name': response, 'actives': actives, 'closed': closed, 'queue':queue, 'messages' : messages, 'form': form, 'agents': agents, 'labels': labels, 'messages_labeled' : messages_labeled})
 
     def chat(self, chat_id, client_id):
         #Details from Chat

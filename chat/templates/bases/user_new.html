@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <label for="fname">Usuario de acceso</label>
                                     {% render_field form.username type="text" placeholder="Usuario" class="form-control"  %}
-                                    {% render_field form.client_id type="hidden" class="form-control" %}
+                                    <!-- {% render_field form.client_id type="hidden" class="form-control" %} -->
                                 </div>
                             </div>
                             <div class="col">
@@ -52,6 +52,9 @@
                         </div>
                         <label for="select05">Rol</label>
                         {% render_field form.role  class="form-control" %}
+                        </select>
+                        <label for="select05">Cliente:</label>
+                        {% render_field form.client_id  class="form-control" %}
                         </select>
                         <div class="form-group">
                             <label for="subscribe">Estatus</label><br>
