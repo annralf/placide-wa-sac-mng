@@ -21,12 +21,15 @@ class Login(View):
         password = request.POST['password']
         agent =  User.Users.objects.filter(username= username, password=password).first()            
         if agent:
-            client_id = agent.client_id.id
             agent.save()   
             request.session['user_id'] = agent.id
             request.session['username'] = agent.username
             request.session['full_name'] = agent.name
             request.session['rol'] = agent.role_id
+            try:
+                client_id = agent.client_id.id
+            except:
+                client_id = None
             if(agent.role_id == 4):
                 client_id = agent.id
             request.session['client_id'] = client_id
