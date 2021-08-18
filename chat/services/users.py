@@ -6,8 +6,8 @@ from chat._constants import *
 ### Users functions ###
 
 # Get user status
-def userStatus( chatId = None, phone = None ):
-    payload = {'token': TOKEN}
+def userStatus( token,chatId = None, phone = None ):
+    payload = {'token': token}
 
     # Parameters
     if not chatId and not phone:
@@ -22,8 +22,8 @@ def userStatus( chatId = None, phone = None ):
     return r
 
 # Get instance qr code
-def getQrcode():
-    r = requests.get(f'{API_URL}/qr_code', params = {'token': TOKEN} )
+def getQrcode( token, instance):
+    r = requests.get(f'{API_URL}/{instance}/qr_code', params = {'token': token} )
     qr = BytesIO(r.content)
     data = base64.encodebytes(qr.getvalue()).decode('utf-8')
     return data
