@@ -156,6 +156,6 @@ def update_label(request):
         return std_response()
 
 @api_view(['GET'])
-def get_qr(request):
-    qr = getQrcode()
+def get_qr(request, token):
+    qr = getQrcode( token )
     return std_response(pld=qr)
