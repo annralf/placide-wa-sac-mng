@@ -23,7 +23,6 @@ def userStatus( chatId = None, phone = None ):
 
 # Get instance qr code
 def getQrcode():
-
     r = requests.get(f'{API_URL}/qr_code', params = {'token': TOKEN} )
     qr = BytesIO(r.content)
     data = base64.encodebytes(qr.getvalue()).decode('utf-8')

@@ -50,7 +50,7 @@ class Admin(View):
         chat_id = ''
         if chatList == 0:
             print(client_id)
-            return render(request, 'client/error.html')
+            return render(request, 'client/unlink.html')
         else:
             for chat in chatList:
                 if chat['chat_id'] == chat_id:
@@ -118,6 +118,7 @@ class Show(View):
         client = Cli.objects.get(id=id)
         manager = ClientMng()
         image = manager.getQr(id)
+        print(image)
         return render(request, self.template, {'client': client, 'image': image})
 
 

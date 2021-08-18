@@ -29,9 +29,7 @@ class Login(View):
             try:
                 client_id = agent.client_id.id
             except:
-                client_id = None
-            if(agent.role_id == 4):
-                client_id = agent.id
+                client_id = None            
             request.session['client_id'] = client_id
             request.session['logged'] = True
             return redirect("home")
