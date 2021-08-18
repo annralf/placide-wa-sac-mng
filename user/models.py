@@ -24,7 +24,8 @@ class Users(models.Model):
     role = models.ForeignKey(UsersRole,models.SET_NULL, db_column='role_id', blank=True, null=True )
     status_user = models.IntegerField( db_column='status', blank=True, null=True)
     created_at =models.DateTimeField(default=timezone.now)
-    client_id =  models.IntegerField(blank=True, null=False)
+    client_id =  models.ForeignKey(Client,models.SET_NULL, db_column='client_id', blank=True, null=True )
+    #models.IntegerField(blank=True, null=False)
 
     class Meta:
         managed = False
